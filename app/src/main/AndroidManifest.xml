@@ -12,11 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto_TFG_FrontEnd"
         android:usesCleartextTraffic="true">
-        <activity android:name=".registro"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-        </activity>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".Log_in"
+        <activity
+            android:name=".MenuPrincipal"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity
+            android:name=".registro"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity
+            android:name=".Log_in"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
