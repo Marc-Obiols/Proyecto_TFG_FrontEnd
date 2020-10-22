@@ -10,13 +10,190 @@
         android:id="@+id/foto_perfil"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        tools:layout_editor_absoluteX="39dp"
-        tools:layout_editor_absoluteY="34dp" />
+        android:layout_marginTop="212dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/username"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/logo"/>
 
     <TextView
         android:id="@+id/username"
-        android:layout_width="170dp"
-        android:layout_height="50dp"
-        tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="62dp" />
+        android:layout_width="130dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="264dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
+        android:text="hola"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TableLayout
+        android:id="@+id/info_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foto_perfil">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bordes">
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:text="Peso"
+
+                android:background="@color/colorPrimary"/>
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:text="Peso meta"
+                android:background="@color/Pantalla_registro_top"/>
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:text="Altura"
+                android:background="@color/colorPrimary"/>
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:text="Edad"
+                android:background="@color/Pantalla_registro_top"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/peso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:inputType="number"/>
+
+            <EditText
+                android:id="@+id/peso_meta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:inputType="number"/>
+
+            <EditText
+                android:id="@+id/altura"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:inputType="number"/>
+
+            <EditText
+                android:id="@+id/edad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:inputType="number"/>
+
+        </TableRow>
+
+    </TableLayout>
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/info_user">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bordes">
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorAccent"
+                android:text="IMC" />
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:background="@color/Fondo_pantalla_top"
+                android:text="Peso ideal" />
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorAccent"
+                android:text="Peso max" />
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:background="@color/Fondo_pantalla_top"
+                android:text="Peso min" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/IMC"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@null"/>
+
+            <EditText
+                android:id="@+id/peso_ideal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@null"/>
+
+            <EditText
+                android:id="@+id/peso_max"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@null"/>
+
+            <EditText
+                android:id="@+id/peso_min"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@null"/>
+
+        </TableRow>
+
+    </TableLayout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+        app:layout_constraintVertical_bias="0.278">
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Estado fisico:"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Prueba"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.constraintlayout.widget.ConstraintLayout>

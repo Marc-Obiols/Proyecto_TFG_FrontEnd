@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/menu_perfil"
-        android:title="Progreso" />
+        android:id="@+id/informacion"
+        android:title="Informacion" />
     <item
-        android:id="@+id/menu_rutinas"
-        android:title="Datos perfil" />
+        android:id="@+id/progreso"
+        android:title="Progreso" />
 </menu>

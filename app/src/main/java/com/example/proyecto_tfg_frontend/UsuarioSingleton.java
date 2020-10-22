@@ -1,4 +1,6 @@
 package com.example.proyecto_tfg_frontend;
+import android.graphics.Bitmap;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,6 +17,8 @@ public class UsuarioSingleton {
     private int peso_des;
     private int[] pesos;
     private Date[] fechas;
+    private Bitmap imagen;
+    private String dato;
 
     private static final UsuarioSingleton ourInstance = new UsuarioSingleton();
 
@@ -102,5 +106,21 @@ public class UsuarioSingleton {
 
     public void setFechas(Date[] fechas) {
         this.fechas = fechas;
+    }
+
+    public Bitmap getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(Bitmap imagen) {
+        this.imagen = imagen;
+    }
+
+    public String getDato() {
+        return dato;
+    }
+
+    public void setDato(String dato) {
+        this.dato = dato;
     }
 }
