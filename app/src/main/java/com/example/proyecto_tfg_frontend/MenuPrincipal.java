@@ -14,7 +14,7 @@ public class MenuPrincipal extends AppCompatActivity {
 
     private BottomNavigationView menu;
     private FragmentTransaction transaction;
-    private Fragment usuario, progreso, menu_perfil;
+    private Fragment usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +22,7 @@ public class MenuPrincipal extends AppCompatActivity {
         setContentView(R.layout.activity_menu_principal);
 
         usuario = new Perfil();
-        progreso = new ProgresoFragment();
-        menu_perfil = new menu_perfil();
 
-        getSupportFragmentManager().beginTransaction().add(R.id.menu, menu_perfil).commit();
         getSupportFragmentManager().beginTransaction().add(R.id.pantalla, usuario).commit();
         transaction = getSupportFragmentManager().beginTransaction();
 

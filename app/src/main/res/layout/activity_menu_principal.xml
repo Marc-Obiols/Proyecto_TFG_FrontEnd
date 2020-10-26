@@ -6,23 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".MenuPrincipal">
 
-    <FrameLayout
-        android:id="@+id/menu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/pantalla"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="16dp" />
 
     <FrameLayout
         android:id="@+id/pantalla"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/menu_principal"
-        android:layout_marginBottom="348dp"
-        app:layout_constraintBottom_toTopOf="@+id/menu_principal"
-        app:layout_constraintTop_toBottomOf="@+id/menu"
-        tools:layout_editor_absoluteX="0dp" />
+        android:layout_height="match_parent"
+        android:layout_above="@id/menu_principal"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/menu_principal"

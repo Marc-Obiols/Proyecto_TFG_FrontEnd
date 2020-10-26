@@ -1,5 +1,7 @@
 package com.example.proyecto_tfg_frontend;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -11,16 +13,21 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -39,11 +46,16 @@ public class Perfil extends Fragment implements Interfaz{
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private Button buttonModificar;
+    private Button ver_progreso;
+
+    private Dialog registro_peso;
 
     private TableLayout info_user;
     private TextView username;
     private CircleImageView imagen_perfil;
 
+    private EditText email;
     private EditText peso;
     private EditText peso_meta;
     private EditText altura;
@@ -88,8 +100,10 @@ public class Perfil extends Fragment implements Interfaz{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
 
+        registro_peso = new Dialog(this.getActivity());
+
         info_user = (TableLayout) view.findViewById(R.id.info_user);
-        username = (TextView) view.findViewById(R.id.username);
+        username = (EditText) view.findViewById(R.id.editTextTextPersonName2);
         peso = (EditText) view.findViewById(R.id.peso);
         peso_meta = (EditText) view.findViewById(R.id.peso_meta);
         altura = (EditText) view.findViewById(R.id.altura);
@@ -99,11 +113,18 @@ public class Perfil extends Fragment implements Interfaz{
         peso_max = (EditText) view.findViewById(R.id.peso_max);
         peso_min = (EditText) view.findViewById(R.id.peso_min);
         imagen_perfil = (CircleImageView) view.findViewById(R.id.foto_perfil);
+        buttonModificar = (Button) view.findViewById(R.id.Modificar);
+        email = (EditText) view.findViewById(R.id.editTextTextPersonName);
+        ver_progreso = (Button) view.findViewById(R.id.progreso);
 
         IMC.setEnabled(false);
         peso_ideal.setEnabled(false);
         peso_max.setEnabled(false);
         peso_min.setEnabled(false);
+        peso.setEnabled(false);
+        peso_meta.setEnabled(false);
+        edad.setEnabled(false);
+        altura.setEnabled(false);
 
         username.setText(UsuarioSingleton.getInstance().getUsername());
         peso.setText(String.valueOf(UsuarioSingleton.getInstance().getPeso_act()));
@@ -117,16 +138,58 @@ public class Perfil extends Fragment implements Interfaz{
         peso_ideal.setText(String.valueOf(pes_id));
         peso_max.setText(String.valueOf(pes_max));
         peso_min.setText(String.valueOf(pes_min));
-        System.out.println("QUE ESTA PASANDO");
-        //System.out.println(UsuarioSingleton.getInstance().getImagen().toString());
-        //System.out.println(UsuarioSingleton.getInstance().getImagen());
-        //Bitmap bitmap = BitmapFactory.decodeByteArray(UsuarioSingleton.getInstance().getImagen(), 0, UsuarioSingleton.getInstance().getImagen().length);
-        //System.out.println(bitmap);
         Picasso.get().load("http://169.254.145.10:3000/users/"+UsuarioSingleton.getInstance().getId()+"/image").into(imagen_perfil);
-        //Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(imagen_perfil);
-        //Connection con = new Connection(this);
-        //con.execute("http://169.254.145.10:3000/users/"+UsuarioSingleton.getInstance().getId()+"/image", "GET", null);
-        // Inflate the layout for this fragment
+
+        buttonModificar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("HOLA");
+                TextView ult_registro;
+                Button confirmar, cancelar;
+                EditText nuev_pes;
+                registro_peso.setContentView(R.layout.popup_mod_perfil);
+                ult_registro = (TextView) registro_peso.findViewById(R.id.ult_reg);
+                confirmar = (Button) registro_peso.findViewById(R.id.actualizar);
+                cancelar = (Button) registro_peso.findViewById(R.id.cancelar);
+                nuev_pes = (EditText) registro_peso.findViewById(R.id.peso_mod);
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date aux = UsuarioSingleton.getInstance().getFechas()[UsuarioSingleton.getInstance().getFechas().length-1];
+                String fecha = sdf.format(aux);
+                int peso_aux = UsuarioSingleton.getInstance().getPesos()[UsuarioSingleton.getInstance().getPesos().length-1];
+                ult_registro.setText("El ultimo registro es " + peso_aux + " del " + fecha);
+                confirmar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        JSONObject req = new JSONObject();
+                        try {
+                            req.put("peso_actual", Integer.parseInt(nuev_pes.getText().toString()));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        Connection con = new Connection(Perfil.this);
+                        con.execute("http://169.254.145.10:3000/users/registrarPes/" + UsuarioSingleton.getInstance().getId(), "POST", req.toString());
+                        registro_peso.dismiss();
+                    }
+                });
+                cancelar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        registro_peso.dismiss();
+                    }
+                });
+                registro_peso.show();
+            }
+        });
+
+        ver_progreso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Activity_progeso.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
         return view;
     }
 
@@ -135,8 +198,27 @@ public class Perfil extends Fragment implements Interfaz{
         try {
             if (datos.getInt("codigo") == 200) {
 
+                JSONArray aux2 = datos.getJSONArray("fechas");
+                JSONArray aux3 = datos.getJSONArray("pesos");
+                int [] aux1 = new int[aux2.length()];
+                Date[] aux4 = new Date[aux2.length()];
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                int i;
+                for (i=0;i<aux1.length;++i) {
+                    aux1[i] = aux3.getInt(i);
+                    aux4[i] = sdf.parse(aux2.getString(i).substring(0,10));
+                }
+                UsuarioSingleton.getInstance().setPesos(aux1);
+                UsuarioSingleton.getInstance().setFechas(aux4);
+                UsuarioSingleton.getInstance().setPeso_act(datos.getInt("peso_actual"));
+                System.out.println(datos.getInt("peso_actual"));
+                peso.setText(String.valueOf(UsuarioSingleton.getInstance().getPeso_act()));
+                Toast.makeText(getActivity(),"Se ha registrado correctamente", Toast.LENGTH_LONG).show();
             }
-        } catch (JSONException e) {
+            else {
+                System.out.println("algo pasa");
+            }
+        } catch (JSONException | ParseException e) {
             e.printStackTrace();
         }
     }
