@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="20dp"
         android:inputType="textPersonName"
         android:text="Name"
         app:layout_constraintBottom_toTopOf="@+id/linearLayoutCompat"
@@ -207,6 +207,7 @@
                 android:text="Estado fisico:" />
 
             <TextView
+                android:id="@+id/estado_forma"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Prueba" />
@@ -265,26 +266,32 @@
             <TableRow>
 
                 <TextView
+                    android:id="@+id/proteinas"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
 
                 <TextView
+                    android:id="@+id/carbo_hidra"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
 
                 <TextView
+                    android:id="@+id/grasas"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
 
                 <TextView
+                    android:id="@+id/sodio"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
 
                 <TextView
+                    android:id="@+id/azucar"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
 
                 <TextView
+                    android:id="@+id/calorias"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
             </TableRow>

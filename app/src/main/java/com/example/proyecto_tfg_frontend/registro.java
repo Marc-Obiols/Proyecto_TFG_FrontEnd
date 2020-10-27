@@ -147,6 +147,8 @@ public class registro extends AppCompatActivity implements Interfaz {
                 UsuarioSingleton.getInstance().setPeso_des(Integer.parseInt(datos.getString("peso_deseado")));
                 UsuarioSingleton.getInstance().setIMC(Integer.parseInt(datos.getString("IMC")));
                 UsuarioSingleton.getInstance().setMail(datos.getString("email"));
+                UsuarioSingleton.getInstance().setSexo(datos.getString("sexo"));
+                UsuarioSingleton.getInstance().setPeso_id(datos.getInt("peso_ideal"));
 
                 JSONArray aux2 = datos.getJSONArray("fechas");
                 JSONArray aux3 = datos.getJSONArray("pesos");
@@ -165,6 +167,8 @@ public class registro extends AppCompatActivity implements Interfaz {
                 }*/
                 UsuarioSingleton.getInstance().setFechas(aux4);
                 UsuarioSingleton.getInstance().setPesos(aux1);
+                Date fecha_nac = sdf.parse(datos.getString("fecha_nacimiento").substring(0,10));
+                UsuarioSingleton.getInstance().setFecha_nacimiento(fecha_nac);
 
                 Toast.makeText(registro.this,"Bienvenido", Toast.LENGTH_LONG).show();
                 Intent ii = new Intent(getApplicationContext(), MenuPrincipal.class);

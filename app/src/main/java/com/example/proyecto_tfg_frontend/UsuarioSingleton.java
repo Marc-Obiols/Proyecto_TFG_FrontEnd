@@ -15,8 +15,10 @@ public class UsuarioSingleton {
     private int altura;
     private int peso_act;
     private int peso_des;
+    private int peso_id;
     private int[] pesos;
     private Date[] fechas;
+    private Date fecha_nacimiento;
     private Bitmap imagen;
     private String dato;
 
@@ -122,5 +124,21 @@ public class UsuarioSingleton {
 
     public void setDato(String dato) {
         this.dato = dato;
+    }
+
+    public int getPeso_id() {
+        return peso_id;
+    }
+
+    public void setPeso_id(int peso_id) {
+        this.peso_id = peso_id;
+    }
+
+    public Date getFecha_nacimiento() {
+        return fecha_nacimiento;
+    }
+
+    public void setFecha_nacimiento(Date fecha_nacimiento) {
+        this.fecha_nacimiento = fecha_nacimiento;
     }
 }

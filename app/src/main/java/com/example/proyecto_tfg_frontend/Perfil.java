@@ -27,6 +27,7 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -48,11 +49,14 @@ public class Perfil extends Fragment implements Interfaz{
     private String mParam2;
     private Button buttonModificar;
     private Button ver_progreso;
+    private Button modificar;
 
+    private int llamada;
     private Dialog registro_peso;
 
     private TableLayout info_user;
     private TextView username;
+    private TextView est_forma;
     private CircleImageView imagen_perfil;
 
     private EditText email;
@@ -64,6 +68,14 @@ public class Perfil extends Fragment implements Interfaz{
     private EditText peso_ideal;
     private EditText peso_max;
     private EditText peso_min;
+
+    //plan
+    private TextView prot;
+    private TextView azu;
+    private TextView gras;
+    private TextView cahi;
+    private TextView calo;
+    private TextView sodi;
 
     public Perfil() {
         // Required empty public constructor
@@ -116,13 +128,23 @@ public class Perfil extends Fragment implements Interfaz{
         buttonModificar = (Button) view.findViewById(R.id.Modificar);
         email = (EditText) view.findViewById(R.id.editTextTextPersonName);
         ver_progreso = (Button) view.findViewById(R.id.progreso);
+        est_forma = (TextView)  view.findViewById(R.id.estado_forma);
+        modificar = (Button) view.findViewById(R.id.button2);
+
+        //PLAN
+        prot = (TextView)  view.findViewById(R.id.proteinas);
+        azu = (TextView)  view.findViewById(R.id.azucar);
+        gras = (TextView)  view.findViewById(R.id.grasas);
+        cahi = (TextView)  view.findViewById(R.id.carbo_hidra);
+        calo = (TextView)  view.findViewById(R.id.calorias);
+        sodi = (TextView)  view.findViewById(R.id.sodio);
 
         IMC.setEnabled(false);
         peso_ideal.setEnabled(false);
         peso_max.setEnabled(false);
         peso_min.setEnabled(false);
         peso.setEnabled(false);
-        peso_meta.setEnabled(false);
+        //peso_meta.setEnabled(false);
         edad.setEnabled(false);
         altura.setEnabled(false);
 
@@ -130,20 +152,22 @@ public class Perfil extends Fragment implements Interfaz{
         peso.setText(String.valueOf(UsuarioSingleton.getInstance().getPeso_act()));
         peso_meta.setText(String.valueOf(UsuarioSingleton.getInstance().getPeso_des()));
         altura.setText(String.valueOf(UsuarioSingleton.getInstance().getAltura()));
-        edad.setText("12");
+        edad.setText(UsuarioSingleton.getInstance().getFecha_nacimiento().toString());
         IMC.setText(String.valueOf(UsuarioSingleton.getInstance().getIMC()));
-        int pes_id = 40;
-        int pes_max = 60;
-        int pes_min = 20;
-        peso_ideal.setText(String.valueOf(pes_id));
-        peso_max.setText(String.valueOf(pes_max));
-        peso_min.setText(String.valueOf(pes_min));
+        System.out.println(UsuarioSingleton.getInstance().getAltura());
+        ArrayList<String> valores = calculo_pesos(UsuarioSingleton.getInstance().getSexo(), UsuarioSingleton.getInstance().getAltura());
+        peso_ideal.setText(String.valueOf(UsuarioSingleton.getInstance().getPeso_id()));
+        peso_max.setText(valores.get(0));
+        peso_min.setText(valores.get(1));
+        est_forma.setText(estado_forma(UsuarioSingleton.getInstance().getIMC()));
         Picasso.get().load("http://169.254.145.10:3000/users/"+UsuarioSingleton.getInstance().getId()+"/image").into(imagen_perfil);
+        llamada = 2;
+        Connection con = new Connection(this);
+        con.execute("http://169.254.145.10:3000/plan/" + UsuarioSingleton.getInstance().getId(), "GET", null);
 
         buttonModificar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("HOLA");
                 TextView ult_registro;
                 Button confirmar, cancelar;
                 EditText nuev_pes;
@@ -167,6 +191,8 @@ public class Perfil extends Fragment implements Interfaz{
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                        llamada = 1;
+                        System.out.println(req.toString());
                         Connection con = new Connection(Perfil.this);
                         con.execute("http://169.254.145.10:3000/users/registrarPes/" + UsuarioSingleton.getInstance().getId(), "POST", req.toString());
                         registro_peso.dismiss();
@@ -179,6 +205,24 @@ public class Perfil extends Fragment implements Interfaz{
                     }
                 });
                 registro_peso.show();
+            }
+        });
+
+        modificar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                JSONObject req = new JSONObject();
+                try {
+                    req.put("username", UsuarioSingleton.getInstance().getUsername());
+                    req.put("email", UsuarioSingleton.getInstance().getMail());
+                    req.put("peso_deseado", Integer.parseInt(peso_meta.getText().toString()));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                llamada = 3;
+                System.out.println(req.toString());
+                Connection con = new Connection(Perfil.this);
+                con.execute("http://169.254.145.10:3000/users/modificar/" + UsuarioSingleton.getInstance().getId(), "POST", req.toString());
             }
         });
 
@@ -197,23 +241,40 @@ public class Perfil extends Fragment implements Interfaz{
     public void Respuesta(JSONObject datos) {
         try {
             if (datos.getInt("codigo") == 200) {
-
-                JSONArray aux2 = datos.getJSONArray("fechas");
-                JSONArray aux3 = datos.getJSONArray("pesos");
-                int [] aux1 = new int[aux2.length()];
-                Date[] aux4 = new Date[aux2.length()];
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                int i;
-                for (i=0;i<aux1.length;++i) {
-                    aux1[i] = aux3.getInt(i);
-                    aux4[i] = sdf.parse(aux2.getString(i).substring(0,10));
+                if (llamada == 1) {
+                    JSONArray aux2 = datos.getJSONArray("fechas");
+                    JSONArray aux3 = datos.getJSONArray("pesos");
+                    int[] aux1 = new int[aux2.length()];
+                    Date[] aux4 = new Date[aux2.length()];
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    int i;
+                    for (i = 0; i < aux1.length; ++i) {
+                        aux1[i] = aux3.getInt(i);
+                        aux4[i] = sdf.parse(aux2.getString(i).substring(0, 10));
+                    }
+                    UsuarioSingleton.getInstance().setPesos(aux1);
+                    UsuarioSingleton.getInstance().setFechas(aux4);
+                    UsuarioSingleton.getInstance().setPeso_act(datos.getInt("peso_actual"));
+                    UsuarioSingleton.getInstance().setIMC(datos.getInt("IMC"));
+                    IMC.setText(datos.getString("IMC"));
+                    est_forma.setText(estado_forma(UsuarioSingleton.getInstance().getIMC()));
+                    peso.setText(String.valueOf(UsuarioSingleton.getInstance().getPeso_act()));
+                    Toast.makeText(getActivity(), "Se ha registrado correctamente", Toast.LENGTH_LONG).show();
                 }
-                UsuarioSingleton.getInstance().setPesos(aux1);
-                UsuarioSingleton.getInstance().setFechas(aux4);
-                UsuarioSingleton.getInstance().setPeso_act(datos.getInt("peso_actual"));
-                System.out.println(datos.getInt("peso_actual"));
-                peso.setText(String.valueOf(UsuarioSingleton.getInstance().getPeso_act()));
-                Toast.makeText(getActivity(),"Se ha registrado correctamente", Toast.LENGTH_LONG).show();
+                else if(llamada == 2) {
+                    prot.setText(datos.getString("Proteinas"));
+                    azu.setText(datos.getString("Azucar"));
+                    gras.setText(datos.getString("Grasas"));
+                    cahi.setText(datos.getString("Carbohidratos"));
+                    calo.setText(datos.getString("Kcal"));
+                    sodi.setText(datos.getString("Sodio"));
+                }
+                else if (llamada == 3) {
+                    peso_meta.setText(datos.getString("peso_deseado"));
+                    llamada = 2;
+                    Connection con = new Connection(this);
+                    con.execute("http://169.254.145.10:3000/plan/" + UsuarioSingleton.getInstance().getId(), "GET", null);
+                }
             }
             else {
                 System.out.println("algo pasa");
@@ -221,5 +282,38 @@ public class Perfil extends Fragment implements Interfaz{
         } catch (JSONException | ParseException e) {
             e.printStackTrace();
         }
+    }
+
+    private ArrayList<String> calculo_pesos(String sexo, int alt) {
+        ArrayList<String> result = new ArrayList<String>();
+        double min, max;
+        System.out.println(sexo);
+        if (sexo.equals("hombre")) {
+            System.out.println("SOY HOMBRE");
+            min = 21;
+            max = 26;
+        }
+        else {
+            System.out.println("SOY MUJER");
+            min = 19;
+            max = 24;
+        }
+        double aux = alt;
+        aux = aux/100;
+        double altu_2 = aux*aux;
+        double res_max = altu_2*max;
+        double res_min = altu_2*min;
+        System.out.println(res_min + " : " + res_max);
+        result.add(String.valueOf((int)(res_max)));
+        result.add(String.valueOf((int)(res_min)));
+        return result;
+    }
+    private String estado_forma(int IMC) {
+        String estado_forma;
+        if (IMC < 18.5) estado_forma = "Delgado";
+        else if (IMC >= 18.5 && IMC <= 24.9) estado_forma = "Bueno";
+        else if (IMC > 24.9 && IMC <= 29.9) estado_forma = "Sobrepeso";
+        else estado_forma = "Obesidad";
+        return estado_forma;
     }
 }

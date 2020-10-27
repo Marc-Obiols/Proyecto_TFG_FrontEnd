@@ -70,6 +70,10 @@ public class Log_in extends AppCompatActivity implements Interfaz {
                 UsuarioSingleton.getInstance().setPeso_des(Integer.parseInt(datos.getString("peso_deseado")));
                 UsuarioSingleton.getInstance().setIMC(Integer.parseInt(datos.getString("IMC")));
                 UsuarioSingleton.getInstance().setMail(datos.getString("email"));
+                UsuarioSingleton.getInstance().setSexo(datos.getString("sexo"));
+                UsuarioSingleton.getInstance().setPeso_id(datos.getInt("peso_ideal"));
+
+                System.out.println();
 
                 JSONArray aux2 = datos.getJSONArray("fechas");
                 JSONArray aux3 = datos.getJSONArray("pesos");
@@ -77,7 +81,6 @@ public class Log_in extends AppCompatActivity implements Interfaz {
                 Date[] aux4 = new Date[aux2.length()];
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 int i;
-
                 for (i=0;i<aux1.length;++i) {
                     aux1[i] = aux3.getInt(i);
                     aux4[i] = sdf.parse(aux2.getString(i).substring(0,10));
@@ -95,6 +98,8 @@ public class Log_in extends AppCompatActivity implements Interfaz {
                 }*/
                 UsuarioSingleton.getInstance().setFechas(aux4);
                 UsuarioSingleton.getInstance().setPesos(aux1);
+                Date fecha_nac = sdf.parse(datos.getString("fecha_nacimiento").substring(0,10));
+                UsuarioSingleton.getInstance().setFecha_nacimiento(fecha_nac);
                 //UsuarioSingleton.getInstance().setImagen(imageInByteArray);
 
                 Toast.makeText(Log_in.this,"Bienvenido", Toast.LENGTH_LONG).show();
