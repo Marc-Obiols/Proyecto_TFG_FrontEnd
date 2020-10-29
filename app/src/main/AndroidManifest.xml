@@ -4,6 +4,11 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!--android:parentActivityName=".Ejercicios" con esto funcionalidad de la flecha de arriba izquierda-->
+    <!-- <meta-data
+        android:name="android.support.PARENT_ACTIVITY"
+        android:value=".activity a la que volver atras"-->
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,7 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto_TFG_FrontEnd"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity_progeso"></activity>
+        <activity android:name=".Ejercicios"
+            android:label="Ejercicios">
+
+        </activity>
+        <activity android:name=".Activity_progeso" />
         <activity
             android:name=".MenuPrincipal"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
