@@ -97,6 +97,10 @@ public class Connection extends AsyncTask<String, String, JSONObject> {
     @Override
 
     public void onPostExecute(JSONObject Result) {
-        this.inter.Respuesta(Result);
+        try {
+            this.inter.Respuesta(Result);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }

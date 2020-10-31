@@ -14,11 +14,10 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class AdaptadorDatosEjercicios extends RecyclerView.Adapter<AdaptadorDatosEjercicios.ViewHolderDatosEjercicio> {
-
-
+public class AdaptadorDatosEjercicios extends RecyclerView.Adapter<AdaptadorDatosEjercicios.ViewHolderDatosEjercicio> implements View.OnClickListener {
 
     ArrayList <String> listDatos;
+    private View.OnClickListener listener;
 
     public AdaptadorDatosEjercicios(ArrayList<String> listDatos) {
         this.listDatos = listDatos;
@@ -28,6 +27,7 @@ public class AdaptadorDatosEjercicios extends RecyclerView.Adapter<AdaptadorDato
     @Override
     public ViewHolderDatosEjercicio onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_ejercicios,null,false);
+        view.setOnClickListener(this);
         return new ViewHolderDatosEjercicio(view);
     }
 
@@ -39,6 +39,17 @@ public class AdaptadorDatosEjercicios extends RecyclerView.Adapter<AdaptadorDato
     @Override
     public int getItemCount() {
         return listDatos.size();
+    }
+
+    public void setOnClickListener(View.OnClickListener listener) {
+        this.listener = listener;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (listener!=null) {
+            listener.onClick(v);
+        }
     }
 
     public class ViewHolderDatosEjercicio extends RecyclerView.ViewHolder {
