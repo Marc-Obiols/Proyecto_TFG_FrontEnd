@@ -43,7 +43,8 @@ public class MenuPrincipal extends AppCompatActivity {
                     startActivity(i);
                 }
                 else {
-
+                    Intent i = new Intent(getApplicationContext(), Rutinas.class);
+                    startActivity(i);
                 }
                 return true;
             }
