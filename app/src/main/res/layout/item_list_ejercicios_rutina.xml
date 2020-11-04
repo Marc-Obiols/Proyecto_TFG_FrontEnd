@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/foto_ejercicio"
+        android:layout_width="48sp"
+        android:layout_height="48sp" />
+    <TextView
+        android:id="@+id/nombre_ejercicio"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="HOLA"
+        android:textStyle="bold"
+        android:textColor="#000000"/>
+    <TextView
+        android:id="@+id/tiempo_ejercicio"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="15 seg"
+        android:textStyle="bold"
+        android:textColor="#000000"/>
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="48sp"
+        android:layout_height="48sp"
+        android:id="@+id/modficar_ejer"
+        android:src="@drawable/ic_mod" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/eliminar_ejer"
+        android:layout_width="48sp"
+        android:layout_height="48sp"
+        android:src="@drawable/ic_remove"
+        android:layout_marginRight="5dp" />
+
+</LinearLayout>
