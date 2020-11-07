@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto_TFG_FrontEnd"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Rutina"></activity>
+        <activity android:name=".Ejecucion_rutina"></activity>
+        <activity android:name=".Rutina" />
         <activity android:name=".Rutinas" />
         <activity android:name=".Ejercicio" />
         <activity

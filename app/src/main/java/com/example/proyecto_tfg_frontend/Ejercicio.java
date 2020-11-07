@@ -40,7 +40,6 @@ public class Ejercicio extends AppCompatActivity implements Interfaz{
             if (aux != ' ') res = res + aux;
             else res = res + "%20";
         }
-        System.out.println(res);
         return res;
     }
 

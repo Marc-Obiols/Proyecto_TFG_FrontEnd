@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
@@ -23,32 +24,52 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Rutina extends AppCompatActivity implements Interfaz {
 
-    private int llamada;
+    private int llamada, tiempo_descanso, tiempo_total;
     private String nombre_ejercicio_auxiliar;
     private String id_rutina;
 
     private RecyclerView recycler, recyclerEjercicios;
     private AdaptadorDatosEjercicioRutina adaptador;
     private AdaptadorDatosEjercicios adaptadorEjercicios;
-    private CircleImageView añadir_ejercicio;
+    private CircleImageView añadir_ejercicio, empezar_rutina;
     private ArrayList<Pair<String,Integer>> listDatosEjercicio;
     private ArrayList<String> listDatosEjercicioSeleccionar;
     private Dialog pantalla_añadir_ejercicio;
-    private TextView tiempo, Kcal;
+    private TextView tiempo, Kcal, tiempo_desc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rutina);
-        System.out.println(getIntent().getStringExtra("rutina"));
         id_rutina = getIntent().getStringExtra("rutina");
 
         tiempo = (TextView) findViewById(R.id.tiempo);
+        tiempo_desc = (TextView) findViewById(R.id.tiempo_descanso);
         Kcal = (TextView) findViewById(R.id.Kcal);
         pantalla_añadir_ejercicio = new Dialog(this);
 
         recycler = (RecyclerView) findViewById(R.id.lista_ejercicios_rutina);
         recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
+
+        empezar_rutina = (CircleImageView) findViewById(R.id.empezar_rutina);
+        empezar_rutina.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), Ejecucion_rutina.class);
+                ArrayList<String> nombres_ejercicios = new ArrayList<>();
+                ArrayList<Integer> tiempos_ejercicios = new ArrayList<>();
+                for (int j = 0; j < listDatosEjercicio.size(); j++) {
+                    nombres_ejercicios.add(listDatosEjercicio.get(j).first);
+                    tiempos_ejercicios.add(listDatosEjercicio.get(j).second);
+                }
+                i.putExtra("ejercicios_nombres", nombres_ejercicios);
+                i.putExtra("ejercicios_tiempos", tiempos_ejercicios);
+                i.putExtra("tiempo_descanso", tiempo_descanso);
+                i.putExtra("tiempo_total", tiempo_total);
+                System.out.println("quiero empezar la ejecucion de la rutina");
+                startActivity(i);
+            }
+        });
 
         añadir_ejercicio = (CircleImageView) findViewById(R.id.añadir_ejercicio_rutina);
         añadir_ejercicio.setOnClickListener(new View.OnClickListener() {
@@ -106,6 +127,9 @@ public class Rutina extends AppCompatActivity implements Interfaz {
                 if (llamada == 1) {
                     listDatosEjercicio = new ArrayList<>();
                     tiempo.setText("Tiempo: " + datos.getInt("tiempo_total"));
+                    tiempo_descanso = datos.getInt("tiempo_descanso");
+                    tiempo_total = datos.getInt("tiempo_total");
+                    tiempo_desc.setText("Tiempo Descanso: " + datos.getString("tiempo_descanso"));
                     JSONArray aux1 = datos.getJSONArray("ejercicios");
                     JSONArray aux2 = datos.getJSONArray("tiempos");
                     if (aux1.length() == 0) {
@@ -140,6 +164,7 @@ public class Rutina extends AppCompatActivity implements Interfaz {
                 }
                 else if (llamada == 3) {
                     tiempo.setText("Tiempo: " + datos.getString("tiempo_total"));
+                    tiempo_total = datos.getInt("tiempo_total");
                     JSONArray aux1 = datos.getJSONArray("ejercicios");
                     JSONArray aux2 = datos.getJSONArray("tiempos");
                     listDatosEjercicio.add(new Pair<>(aux1.getString(aux1.length()-1), aux2.getInt(aux2.length()-1)));

@@ -27,6 +27,11 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Kcal:"/>
+        <TextView
+            android:id="@+id/tiempo_descanso"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Tiempo descanso:"/>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -42,5 +47,15 @@
         android:layout_below="@+id/lista_ejercicios_rutina"
         android:layout_alignParentRight="true"
         android:src="@drawable/ic_add"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/empezar_rutina"
+        android:layout_width="48sp"
+        android:layout_height="48sp"
+        android:layout_below="@+id/lista_ejercicios_rutina"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="181dp"
+        android:layout_marginTop="432dp"
+        android:src="@drawable/ic_emepzar"/>
 
 </RelativeLayout>
