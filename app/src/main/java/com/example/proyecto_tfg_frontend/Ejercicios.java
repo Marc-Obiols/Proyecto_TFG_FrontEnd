@@ -202,6 +202,5 @@ public class Ejercicios extends AppCompatActivity implements Interfaz{
         } catch (JSONException err) {
             err.printStackTrace();
         }
-
     }
 }

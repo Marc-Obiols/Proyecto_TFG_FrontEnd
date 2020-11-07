@@ -37,7 +37,6 @@ public class Rutinas extends AppCompatActivity implements Interfaz {
     private RecyclerView recycler;
     private AdaptadorDatosRutinas adaptador;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,6 +120,7 @@ public class Rutinas extends AppCompatActivity implements Interfaz {
         try {
             if(datos.getInt("codigo") == 200) {
                 if (llamada == 1) {
+                    llamada = 5;
                     JSONArray nombres = datos.getJSONArray("array");
                     if (nombres.length() == 0) {
                         Toast.makeText(Rutinas.this, "No hay rutinas creadas", Toast.LENGTH_LONG).show();
@@ -137,11 +137,28 @@ public class Rutinas extends AppCompatActivity implements Interfaz {
                 else if (llamada == 2) {
                     listDatosRutinas.add(new Pair<String, String>(datos.getString("nombre"), datos.getString("_id")));
                     adaptador = new AdaptadorDatosRutinas(listDatosRutinas, this);
+                    llamada = 5;
+                }
+                else if (adaptador.getLlamada() == 3) {
+                    System.out.println("NO SE NI COMO HE LLEGADO AQUI");
+                    JSONArray nombres = datos.getJSONArray("array");
+                    listDatosRutinas = new ArrayList<>();
+                    if (nombres.length() != 0) {
+                        for (int i = 0; i < nombres.length(); i++) {
+                            JSONObject aux1 = nombres.getJSONObject(i);
+                            listDatosRutinas.add(i, new Pair<>(aux1.getString("nombre"), aux1.getString("id")));
+                        }
+                    }
+                    adaptador = new AdaptadorDatosRutinas(listDatosRutinas, this);
                 }
                 recycler.setAdapter(adaptador);
             }
         } catch (JSONException err) {
             err.printStackTrace();
         }
+    }
+
+    public void cambiarllamada(int llam) {
+        llamada = llam;
     }
 }
