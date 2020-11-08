@@ -140,7 +140,6 @@ public class Rutinas extends AppCompatActivity implements Interfaz {
                     llamada = 5;
                 }
                 else if (adaptador.getLlamada() == 3) {
-                    System.out.println("NO SE NI COMO HE LLEGADO AQUI");
                     JSONArray nombres = datos.getJSONArray("array");
                     listDatosRutinas = new ArrayList<>();
                     if (nombres.length() != 0) {
@@ -149,6 +148,11 @@ public class Rutinas extends AppCompatActivity implements Interfaz {
                             listDatosRutinas.add(i, new Pair<>(aux1.getString("nombre"), aux1.getString("id")));
                         }
                     }
+                    adaptador = new AdaptadorDatosRutinas(listDatosRutinas, this);
+                }
+                else if (adaptador.getLlamada() == 4) {
+                    String id_rut = listDatosRutinas.get(adaptador.getPos()).second;
+                    listDatosRutinas.set(adaptador.getPos(), new Pair<String, String>(datos.getString("nombre"), id_rut));
                     adaptador = new AdaptadorDatosRutinas(listDatosRutinas, this);
                 }
                 recycler.setAdapter(adaptador);

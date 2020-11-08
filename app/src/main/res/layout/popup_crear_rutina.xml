@@ -20,7 +20,7 @@
 
     <EditText
         android:id="@+id/nuev_nombre"
-        android:layout_width="100dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/nombre_rutina"
         android:layout_alignParentTop="true"
@@ -36,7 +36,7 @@
 
     <EditText
         android:id="@+id/nuev_tiempo_desc"
-        android:layout_width="50dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/nombre_rutina"
         android:layout_alignLeft="@id/nombre_rutina"

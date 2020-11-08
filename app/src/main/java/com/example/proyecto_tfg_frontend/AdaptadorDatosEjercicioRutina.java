@@ -1,17 +1,24 @@
 package com.example.proyecto_tfg_frontend;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -21,10 +28,15 @@ public class AdaptadorDatosEjercicioRutina extends RecyclerView.Adapter <Adaptad
 
     ArrayList<Pair<String, Integer>> listDatos;
     private Context c;
+    private Dialog pantalla;
+    private int llamada, posicion;
+    private String id_rutina;
 
-    public AdaptadorDatosEjercicioRutina(ArrayList<Pair<String, Integer>> listDatos, Context contexto) {
+    public AdaptadorDatosEjercicioRutina(ArrayList<Pair<String, Integer>> listDatos, Context contexto, String id_rutina) {
         this.listDatos = listDatos;
         c = contexto;
+        pantalla = new Dialog(c);
+        this.id_rutina = id_rutina;
     }
 
     @NonNull
@@ -36,13 +48,21 @@ public class AdaptadorDatosEjercicioRutina extends RecyclerView.Adapter <Adaptad
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderDatosEjercicioRutina holder, int position) {
-        holder.asignarDatos(listDatos.get(position).first, listDatos.get(position).second);
+        holder.asignarDatos(listDatos.get(position).first, listDatos.get(position).second, position);
     }
 
 
     @Override
     public int getItemCount() {
         return listDatos.size();
+    }
+
+    public int getLlamada() {
+        return llamada;
+    }
+
+    public int getPosicion() {
+        return posicion;
     }
 
     public class ViewHolderDatosEjercicioRutina extends RecyclerView.ViewHolder {
@@ -52,6 +72,8 @@ public class AdaptadorDatosEjercicioRutina extends RecyclerView.Adapter <Adaptad
         CircleImageView foto_ejercicio;
         CircleImageView foto_mod;
         CircleImageView foto_eliminar;
+        int val;
+        int pos;
 
         public ViewHolderDatosEjercicioRutina(@NonNull View itemView) {
             super(itemView);
@@ -70,9 +92,119 @@ public class AdaptadorDatosEjercicioRutina extends RecyclerView.Adapter <Adaptad
                     c.startActivity(i);
                 }
             });
+
+            foto_mod.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    val = pos;
+                    System.out.println(pos);
+                    Button confirmar, cancelar;
+                    EditText segundos;
+                    ImageButton up, down;
+                    TextView nuev_pos;
+                    pantalla.setContentView(R.layout.popup_mod_ejercicio_rutina);
+                    confirmar = (Button) pantalla.findViewById(R.id.confirmar);
+                    cancelar = (Button) pantalla.findViewById(R.id.cancelar);
+                    segundos = (EditText) pantalla.findViewById(R.id.nuevo_tiempo);
+                    up = (ImageButton) pantalla.findViewById(R.id.sum);
+                    down = (ImageButton) pantalla.findViewById(R.id.rest);
+                    nuev_pos = (TextView) pantalla.findViewById(R.id.pos);
+                    String aux = Integer.toString(pos);
+                    nuev_pos.setText(aux);
+                    segundos.setText(Integer.toString(listDatos.get(pos).second));
+
+                    up.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if(val != listDatos.size()-1) {
+                                val+=1;
+                                nuev_pos.setText(Integer.toString(val));
+                            }
+                            System.out.println(val);
+                        }
+                    });
+
+                    down.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if(val != 0)  {
+                                val-=1;
+                                nuev_pos.setText(Integer.toString(val));
+                            }
+                            System.out.println(val);
+                        }
+                    });
+
+                    confirmar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            System.out.println(val);
+                            JSONObject req = new JSONObject();
+                            try {
+                                req.put("posicion", pos);
+                                req.put("tiempo_nuev", Integer.parseInt(segundos.getText().toString()));
+                                req.put("nueva_posicion", val);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            llamada = 4;
+                            Connection con = new Connection((Interfaz) c);
+                            con.execute("http://169.254.145.10:3000/rutina/modEjercicio/" + id_rutina, "POST", req.toString());
+                            pantalla.dismiss();
+                        }
+                    });
+
+                    cancelar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            pantalla.dismiss();
+                        }
+                    });
+                    pantalla.show();
+                }
+            });
+
+            foto_eliminar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Button confirmar, cancelar;
+                    TextView contenido;
+                    pantalla.setContentView(R.layout.popup_eliminar_rutina);
+                    confirmar = (Button) pantalla.findViewById(R.id.confirmar);
+                    cancelar = (Button) pantalla.findViewById(R.id.cancelar);
+                    contenido = (TextView) pantalla.findViewById(R.id.contenido);
+                    contenido.setText("¿Seguro que quieres eliminar el ejercicio?");
+
+                    confirmar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            JSONObject req = new JSONObject();
+                            try {
+                                req.put("posicion", pos);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            llamada = 3;
+                            Connection con = new Connection((Interfaz) c);
+                            con.execute("http://169.254.145.10:3000/rutina/eliminarEjercicio/" + id_rutina, "POST", req.toString());
+                            pantalla.dismiss();
+                        }
+                    });
+
+                    cancelar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            pantalla.dismiss();
+                        }
+                    });
+                    pantalla.show();
+                }
+            });
         }
 
-        public void asignarDatos(String dato , Integer tiempo) {
+        public void asignarDatos(String dato , Integer tiempo, int pos) {
+            this.pos = pos;
+            System.out.println(pos);
             nombre_ejercicio.setText(dato);
             tiempo_ejercicio.setText(tiempo.toString() + " seg");
             Picasso.get().load("http://169.254.145.10:3000/ejercicio/image/" + nombreToUrl(dato)).into(foto_ejercicio);

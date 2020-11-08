@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,7 +28,7 @@ public class AdaptadorDatosRutinas extends RecyclerView.Adapter<AdaptadorDatosRu
     ArrayList<Pair<String, String>> listDatos;
     private Context c;
     private Dialog pantalla_eliminar;
-    private int llamada;
+    private int llamada, pos;
     //private Interfaz interfaz;
 
     public AdaptadorDatosRutinas(ArrayList<Pair<String, String>> listDatos, Context contexto) {
@@ -57,29 +59,9 @@ public class AdaptadorDatosRutinas extends RecyclerView.Adapter<AdaptadorDatosRu
         return llamada;
     }
 
-    /*@Override
-    public void Respuesta(JSONObject datos) throws JSONException {
-        try {
-            if(datos.getInt("codigo") == 200) {
-                System.out.println(datos.toString());
-                JSONArray nombres = datos.getJSONArray("array");
-                ArrayList<Pair<String,String>> auxiliar = new ArrayList<>();
-                if (nombres.length() != 0) {
-                    for (int i = 0; i < nombres.length(); i++) {
-                        JSONObject aux1 = nombres.getJSONObject(i);
-                        auxiliar.add(i, new Pair<>(aux1.getString("nombre"), aux1.getString("id")));
-                    }
-                }
-                listDatos = auxiliar;
-            }
-            else {
-                System.out.println("ERROR AL COMUNICARSE CON SERVER");
-            }
-        } catch (JSONException err) {
-                err.printStackTrace();
-            }
-    }*/
-
+    public int getPos() {
+        return pos;
+    }
 
     public class ViewHolderDatosRutinas extends RecyclerView.ViewHolder {
         TextView nombre_rutina;
@@ -105,7 +87,50 @@ public class AdaptadorDatosRutinas extends RecyclerView.Adapter<AdaptadorDatosRu
             modificar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Button confirmar, cancelar;
+                    EditText nombre, tiempo;
+                    pantalla_eliminar.setContentView(R.layout.popup_crear_rutina);
+                    confirmar = (Button) pantalla_eliminar.findViewById(R.id.confirmar);
+                    cancelar = (Button) pantalla_eliminar.findViewById(R.id.cancelar);
+                    nombre = (EditText) pantalla_eliminar.findViewById(R.id.nuev_nombre);
+                    tiempo = (EditText) pantalla_eliminar.findViewById(R.id.nuev_tiempo_desc);
+                    nombre.setText(listDatos.get(posicion).first);
+                    confirmar.setText("Modificar");
 
+                    confirmar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            JSONObject req = new JSONObject();
+                            String nom = nombre.getText().toString();
+                            if (nom.equals("")){
+                                Toast.makeText(c, "Rellene el nombre de la rutina correctamente", Toast.LENGTH_LONG).show();
+                            }
+                            else if (tiempo.getText().toString().equals("") || tiempo.getText().toString().equals("0")) {
+                                Toast.makeText(c, "Rellene el tiempo de descanso de la rutina correctamente", Toast.LENGTH_LONG).show();
+                            }
+                            else {
+                                try {
+                                    req.put("nombre", nom);
+                                    req.put("tiempo_descanso", Integer.parseInt(tiempo.getText().toString()));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                llamada = 4;
+                                pos = posicion;
+                                Connection con = new Connection((Interfaz) c);
+                                con.execute("http://169.254.145.10:3000/rutina/modificar/" + listDatos.get(posicion).second, "POST", req.toString());
+                                pantalla_eliminar.dismiss();
+                            }
+                        }
+                    });
+
+                    cancelar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            pantalla_eliminar.dismiss();
+                        }
+                    });
+                    pantalla_eliminar.show();
                 }
             });
 
@@ -113,9 +138,12 @@ public class AdaptadorDatosRutinas extends RecyclerView.Adapter<AdaptadorDatosRu
                 @Override
                 public void onClick(View v) {
                     Button confirmar, cancelar;
+                    TextView contenido;
                     pantalla_eliminar.setContentView(R.layout.popup_eliminar_rutina);
                     confirmar = (Button) pantalla_eliminar.findViewById(R.id.confirmar);
                     cancelar = (Button) pantalla_eliminar.findViewById(R.id.cancelar);
+                    contenido = (TextView) pantalla_eliminar.findViewById(R.id.contenido);
+                    contenido.setText("¿Seguro que quieres eliminar la rutina?");
 
                     confirmar.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -126,6 +154,7 @@ public class AdaptadorDatosRutinas extends RecyclerView.Adapter<AdaptadorDatosRu
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
+                            llamada = 3;
                             Connection con = new Connection((Interfaz) c);
                             con.execute("http://169.254.145.10:3000/rutina/eliminar/" + listDatos.get(posicion).second, "POST", req.toString());
                             pantalla_eliminar.dismiss();

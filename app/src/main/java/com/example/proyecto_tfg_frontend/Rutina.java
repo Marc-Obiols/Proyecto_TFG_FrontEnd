@@ -138,7 +138,7 @@ public class Rutina extends AppCompatActivity implements Interfaz {
                         for (int i = 0; i < aux1.length(); i++) {
                             listDatosEjercicio.add(i, new Pair<>(aux1.getString(i), aux2.getInt(i)));
                         }
-                        adaptador = new AdaptadorDatosEjercicioRutina(listDatosEjercicio, this);
+                        adaptador = new AdaptadorDatosEjercicioRutina(listDatosEjercicio, this, id_rutina);
                         recycler.setAdapter(adaptador);
                     }
                 }
@@ -168,10 +168,46 @@ public class Rutina extends AppCompatActivity implements Interfaz {
                     JSONArray aux1 = datos.getJSONArray("ejercicios");
                     JSONArray aux2 = datos.getJSONArray("tiempos");
                     listDatosEjercicio.add(new Pair<>(aux1.getString(aux1.length()-1), aux2.getInt(aux2.length()-1)));
-                    adaptador = new AdaptadorDatosEjercicioRutina(listDatosEjercicio, this);
+                    adaptador = new AdaptadorDatosEjercicioRutina(listDatosEjercicio, this, id_rutina);
                     recycler.setAdapter(adaptador);
                 }
-
+                else if (adaptador.getLlamada() == 3) {
+                    listDatosEjercicio = new ArrayList<>();
+                    tiempo.setText("Tiempo: " + datos.getInt("tiempo_total"));
+                    tiempo_descanso = datos.getInt("tiempo_descanso");
+                    tiempo_total = datos.getInt("tiempo_total");
+                    tiempo_desc.setText("Tiempo Descanso: " + datos.getString("tiempo_descanso"));
+                    JSONArray aux1 = datos.getJSONArray("ejercicios");
+                    JSONArray aux2 = datos.getJSONArray("tiempos");
+                    if (aux1.length() == 0) {
+                        Toast.makeText(Rutina.this, "No hay ejercicios para esta rutina", Toast.LENGTH_LONG).show();
+                    } else {
+                        for (int i = 0; i < aux1.length(); i++) {
+                            listDatosEjercicio.add(i, new Pair<>(aux1.getString(i), aux2.getInt(i)));
+                        }
+                    }
+                    adaptador = new AdaptadorDatosEjercicioRutina(listDatosEjercicio, this, id_rutina);
+                    recycler.setAdapter(adaptador);
+                }
+                else if (adaptador.getLlamada() == 4) {
+                    listDatosEjercicio = new ArrayList<>();
+                    tiempo.setText("Tiempo: " + datos.getInt("tiempo_total"));
+                    tiempo_descanso = datos.getInt("tiempo_descanso");
+                    tiempo_total = datos.getInt("tiempo_total");
+                    tiempo_desc.setText("Tiempo Descanso: " + datos.getString("tiempo_descanso"));
+                    JSONArray aux1 = datos.getJSONArray("ejercicios");
+                    JSONArray aux2 = datos.getJSONArray("tiempos");
+                    if (aux1.length() == 0) {
+                        Toast.makeText(Rutina.this, "No hay ejercicios para esta rutina", Toast.LENGTH_LONG).show();
+                    } else {
+                        for (int i = 0; i < aux1.length(); i++) {
+                            listDatosEjercicio.add(i, new Pair<>(aux1.getString(i), aux2.getInt(i)));
+                        }
+                    }
+                    adaptador = new AdaptadorDatosEjercicioRutina(listDatosEjercicio, this, id_rutina);
+                    recycler.setAdapter(adaptador);
+                }
+                llamada = -1;
             }
             else {
 

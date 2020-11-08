@@ -11,6 +11,7 @@
     tools:context=".Rutina">
 
     <LinearLayout
+        android:gravity="center"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:id="@+id/info_rutina"
@@ -38,14 +39,15 @@
         android:id="@+id/lista_ejercicios_rutina"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/info_rutina"/>
+        android:layout_below="@+id/info_rutina"
+        android:layout_above="@+id/añadir_ejercicio_rutina"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/añadir_ejercicio_rutina"
         android:layout_width="48sp"
         android:layout_height="48sp"
-        android:layout_below="@+id/lista_ejercicios_rutina"
         android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         android:src="@drawable/ic_add"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -53,9 +55,8 @@
         android:layout_width="48sp"
         android:layout_height="48sp"
         android:layout_below="@+id/lista_ejercicios_rutina"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="181dp"
-        android:layout_marginTop="432dp"
         android:src="@drawable/ic_emepzar"/>
 
 </RelativeLayout>
