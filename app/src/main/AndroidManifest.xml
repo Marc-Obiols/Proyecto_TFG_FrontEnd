@@ -12,7 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto_TFG_FrontEnd"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Ejecucion_rutina"></activity>
+        <activity
+            android:name=".datos_user"
+            android:label="@string/title_activity_datos_user"
+            android:theme="@style/Theme.Proyecto_TFG_FrontEnd.NoActionBar"></activity>
+        <activity
+            android:name=".Inicio"
+            android:label="@string/title_activity_inicio"
+            android:theme="@style/Theme.Proyecto_TFG_FrontEnd.NoActionBar" />
+        <activity android:name=".Ejecucion_rutina" />
         <activity android:name=".Rutina" />
         <activity android:name=".Rutinas" />
         <activity android:name=".Ejercicio" />

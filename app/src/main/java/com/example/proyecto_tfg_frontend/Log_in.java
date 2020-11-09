@@ -103,7 +103,7 @@ public class Log_in extends AppCompatActivity implements Interfaz {
                 //UsuarioSingleton.getInstance().setImagen(imageInByteArray);
 
                 Toast.makeText(Log_in.this,"Bienvenido", Toast.LENGTH_LONG).show();
-                Intent ii = new Intent(getApplicationContext(), MenuPrincipal.class);
+                Intent ii = new Intent(getApplicationContext(), Inicio.class);
                 startActivity(ii);
             } else {
                 Toast.makeText(Log_in.this,"Password o username incorrecto", Toast.LENGTH_LONG).show();

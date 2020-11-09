@@ -28,14 +28,14 @@ public class AdaptadorDatosRutinas extends RecyclerView.Adapter<AdaptadorDatosRu
     ArrayList<Pair<String, String>> listDatos;
     private Context c;
     private Dialog pantalla_eliminar;
-    private int llamada, pos;
-    //private Interfaz interfaz;
+    private int llamada, pos, tipo;
 
-    public AdaptadorDatosRutinas(ArrayList<Pair<String, String>> listDatos, Context contexto) {
+    public AdaptadorDatosRutinas(ArrayList<Pair<String, String>> listDatos, Context contexto, int tipo) {
         this.listDatos = listDatos;
         c = contexto;
         llamada = 3;
         pantalla_eliminar = new Dialog(c);
+        this.tipo = tipo;
     }
 
     @NonNull
@@ -74,11 +74,16 @@ public class AdaptadorDatosRutinas extends RecyclerView.Adapter<AdaptadorDatosRu
             nombre_rutina = itemView.findViewById(R.id.nombre_rutina);
             modificar = itemView.findViewById(R.id.modficar_rut);
             eliminar = itemView.findViewById(R.id.eliminar_rut);
+            if (tipo == 2) {
+                modificar.setVisibility(View.INVISIBLE);
+                eliminar.setVisibility(View.INVISIBLE);
+            }
 
             nombre_rutina.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(c.getApplicationContext(), Rutina.class);
+                    i.putExtra("tipo", tipo);
                     i.putExtra("rutina", listDatos.get(posicion).second);
                     c.startActivity(i);
                 }

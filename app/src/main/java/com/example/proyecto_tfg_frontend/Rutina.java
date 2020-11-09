@@ -24,7 +24,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Rutina extends AppCompatActivity implements Interfaz {
 
-    private int llamada, tiempo_descanso, tiempo_total;
+    private int llamada, tiempo_descanso, tiempo_total, tipo;
     private String nombre_ejercicio_auxiliar;
     private String id_rutina;
 
@@ -42,6 +42,7 @@ public class Rutina extends AppCompatActivity implements Interfaz {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rutina);
         id_rutina = getIntent().getStringExtra("rutina");
+        tipo = getIntent().getIntExtra("tipo", 1);
 
         tiempo = (TextView) findViewById(R.id.tiempo);
         tiempo_desc = (TextView) findViewById(R.id.tiempo_descanso);
@@ -72,6 +73,7 @@ public class Rutina extends AppCompatActivity implements Interfaz {
         });
 
         añadir_ejercicio = (CircleImageView) findViewById(R.id.añadir_ejercicio_rutina);
+        if (tipo == 2) añadir_ejercicio.setVisibility(View.INVISIBLE);
         añadir_ejercicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,7 +140,7 @@ public class Rutina extends AppCompatActivity implements Interfaz {
                         for (int i = 0; i < aux1.length(); i++) {
                             listDatosEjercicio.add(i, new Pair<>(aux1.getString(i), aux2.getInt(i)));
                         }
-                        adaptador = new AdaptadorDatosEjercicioRutina(listDatosEjercicio, this, id_rutina);
+                        adaptador = new AdaptadorDatosEjercicioRutina(listDatosEjercicio, this, id_rutina, tipo);
                         recycler.setAdapter(adaptador);
                     }
                 }
@@ -168,7 +170,7 @@ public class Rutina extends AppCompatActivity implements Interfaz {
                     JSONArray aux1 = datos.getJSONArray("ejercicios");
                     JSONArray aux2 = datos.getJSONArray("tiempos");
                     listDatosEjercicio.add(new Pair<>(aux1.getString(aux1.length()-1), aux2.getInt(aux2.length()-1)));
-                    adaptador = new AdaptadorDatosEjercicioRutina(listDatosEjercicio, this, id_rutina);
+                    adaptador = new AdaptadorDatosEjercicioRutina(listDatosEjercicio, this, id_rutina, tipo);
                     recycler.setAdapter(adaptador);
                 }
                 else if (adaptador.getLlamada() == 3) {
@@ -186,7 +188,7 @@ public class Rutina extends AppCompatActivity implements Interfaz {
                             listDatosEjercicio.add(i, new Pair<>(aux1.getString(i), aux2.getInt(i)));
                         }
                     }
-                    adaptador = new AdaptadorDatosEjercicioRutina(listDatosEjercicio, this, id_rutina);
+                    adaptador = new AdaptadorDatosEjercicioRutina(listDatosEjercicio, this, id_rutina, tipo);
                     recycler.setAdapter(adaptador);
                 }
                 else if (adaptador.getLlamada() == 4) {
@@ -204,7 +206,7 @@ public class Rutina extends AppCompatActivity implements Interfaz {
                             listDatosEjercicio.add(i, new Pair<>(aux1.getString(i), aux2.getInt(i)));
                         }
                     }
-                    adaptador = new AdaptadorDatosEjercicioRutina(listDatosEjercicio, this, id_rutina);
+                    adaptador = new AdaptadorDatosEjercicioRutina(listDatosEjercicio, this, id_rutina, tipo);
                     recycler.setAdapter(adaptador);
                 }
                 llamada = -1;

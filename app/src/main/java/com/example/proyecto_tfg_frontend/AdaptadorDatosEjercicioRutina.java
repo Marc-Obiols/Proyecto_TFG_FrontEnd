@@ -29,14 +29,15 @@ public class AdaptadorDatosEjercicioRutina extends RecyclerView.Adapter <Adaptad
     ArrayList<Pair<String, Integer>> listDatos;
     private Context c;
     private Dialog pantalla;
-    private int llamada, posicion;
+    private int llamada, posicion, tipo;
     private String id_rutina;
 
-    public AdaptadorDatosEjercicioRutina(ArrayList<Pair<String, Integer>> listDatos, Context contexto, String id_rutina) {
+    public AdaptadorDatosEjercicioRutina(ArrayList<Pair<String, Integer>> listDatos, Context contexto, String id_rutina, int tipo) {
         this.listDatos = listDatos;
         c = contexto;
         pantalla = new Dialog(c);
         this.id_rutina = id_rutina;
+        this.tipo = tipo;
     }
 
     @NonNull
@@ -82,6 +83,11 @@ public class AdaptadorDatosEjercicioRutina extends RecyclerView.Adapter <Adaptad
             foto_mod = itemView.findViewById(R.id.modficar_ejer);
             foto_eliminar = itemView.findViewById(R.id.eliminar_ejer);
             tiempo_ejercicio = itemView.findViewById(R.id.tiempo_ejercicio);
+
+            if (tipo == 2) {
+                foto_mod.setVisibility(View.INVISIBLE);
+                foto_eliminar.setVisibility(View.INVISIBLE);
+            }
 
             nombre_ejercicio.setOnClickListener(new View.OnClickListener() {
                 @Override

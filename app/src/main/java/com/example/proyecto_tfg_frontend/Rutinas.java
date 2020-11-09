@@ -102,13 +102,19 @@ public class Rutinas extends AppCompatActivity implements Interfaz {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
                 if (item.getItemId() == R.id.mis_rutinas) {
-
+                    crear_rutina.setVisibility(View.VISIBLE);
+                    llamada = 1;
+                    Connection con = new Connection(Rutinas.this);
+                    con.execute("http://169.254.145.10:3000/rutina/"+UsuarioSingleton.getInstance().getId(), "GET", null);
                 }
                 else if (item.getItemId() == R.id.predeterminadas) {
-
+                    crear_rutina.setVisibility(View.INVISIBLE);
+                    llamada = 3;
+                    Connection con = new Connection(Rutinas.this);
+                    con.execute("http://169.254.145.10:3000/rutina/predeterminada/datos", "GET", null);
                 }
                 else if (item.getItemId() == R.id.otras) {
-
+                    crear_rutina.setVisibility(View.INVISIBLE);
                 }
                 return true;
             }
@@ -131,12 +137,22 @@ public class Rutinas extends AppCompatActivity implements Interfaz {
                             JSONObject aux1 = nombres.getJSONObject(i);
                             listDatosRutinas.add(i, new Pair<>(aux1.getString("nombre"), aux1.getString("id")));
                         }
-                        adaptador = new AdaptadorDatosRutinas(listDatosRutinas, this);
+                        adaptador = new AdaptadorDatosRutinas(listDatosRutinas, this,1);
                     }
                 }
                 else if (llamada == 2) {
                     listDatosRutinas.add(new Pair<String, String>(datos.getString("nombre"), datos.getString("_id")));
-                    adaptador = new AdaptadorDatosRutinas(listDatosRutinas, this);
+                    adaptador = new AdaptadorDatosRutinas(listDatosRutinas, this, 1);
+                    llamada = 5;
+                }
+                else if (llamada == 3) {
+                    JSONArray nombres = datos.getJSONArray("array");
+                    listDatosRutinas = new ArrayList<>();
+                    for (int i = 0; i < nombres.length(); i++) {
+                        JSONObject aux1 = nombres.getJSONObject(i);
+                        listDatosRutinas.add(i, new Pair<>(aux1.getString("nombre"), aux1.getString("id")));
+                    }
+                    adaptador = new AdaptadorDatosRutinas(listDatosRutinas, this, 2);
                     llamada = 5;
                 }
                 else if (adaptador.getLlamada() == 3) {
@@ -148,21 +164,17 @@ public class Rutinas extends AppCompatActivity implements Interfaz {
                             listDatosRutinas.add(i, new Pair<>(aux1.getString("nombre"), aux1.getString("id")));
                         }
                     }
-                    adaptador = new AdaptadorDatosRutinas(listDatosRutinas, this);
+                    adaptador = new AdaptadorDatosRutinas(listDatosRutinas, this,1);
                 }
                 else if (adaptador.getLlamada() == 4) {
                     String id_rut = listDatosRutinas.get(adaptador.getPos()).second;
                     listDatosRutinas.set(adaptador.getPos(), new Pair<String, String>(datos.getString("nombre"), id_rut));
-                    adaptador = new AdaptadorDatosRutinas(listDatosRutinas, this);
+                    adaptador = new AdaptadorDatosRutinas(listDatosRutinas, this,1);
                 }
                 recycler.setAdapter(adaptador);
             }
         } catch (JSONException err) {
             err.printStackTrace();
         }
-    }
-
-    public void cambiarllamada(int llam) {
-        llamada = llam;
     }
 }
