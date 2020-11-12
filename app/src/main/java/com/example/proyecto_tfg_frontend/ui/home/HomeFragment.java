@@ -13,6 +13,7 @@ import com.example.proyecto_tfg_frontend.Activity_progeso;
 import com.example.proyecto_tfg_frontend.Ejercicios;
 import com.example.proyecto_tfg_frontend.R;
 import com.example.proyecto_tfg_frontend.Rutinas;
+import com.example.proyecto_tfg_frontend.contador_calorias;
 import com.example.proyecto_tfg_frontend.datos_user;
 
 public class HomeFragment extends Fragment {
@@ -56,6 +57,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), datos_user.class);
+                getActivity().startActivity(intent);
+            }
+        });
+        contador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), contador_calorias.class);
                 getActivity().startActivity(intent);
             }
         });
