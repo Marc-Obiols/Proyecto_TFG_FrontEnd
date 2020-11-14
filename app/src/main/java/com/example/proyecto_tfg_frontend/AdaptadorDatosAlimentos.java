@@ -7,9 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 
 public class AdaptadorDatosAlimentos extends RecyclerView.Adapter<com.example.proyecto_tfg_frontend.AdaptadorDatosAlimentos.ViewHolderDatosAlimentos> implements View.OnClickListener {

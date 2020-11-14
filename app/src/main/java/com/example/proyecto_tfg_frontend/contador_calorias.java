@@ -4,15 +4,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.app.Dialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,22 +33,74 @@ public class contador_calorias extends AppCompatActivity implements Interfaz{
     private EditText buscador;
     private CircleImageView buscar;
     private Spinner ing;
+    private AdaptadorDatosAlimentosSeleccionados adaptadorDatosAlimentosSeleccionados;
     private AdaptadorDatosAlimentos adaptador;
     private RecyclerView recycler;
-    private ArrayList<Alimento> resultado;
+    private ArrayList<Alimento> resultado, alimentos_añadidos;
     private Dialog pantalla;
     private int llamada;
     private TextView kcalorias, proteinas, carbohidratos, fibra, grasas, kcalorias_o, proteinas_o, carbohidratos_o, fibra_o, grasas_o;
+    private ImageButton grafico, abrir_list;
+    private Boolean seleccionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contador_calorias);
+        seleccionado = false;
+
+        alimentos_añadidos = new ArrayList<>();
+
+        recycler = (RecyclerView) findViewById(R.id.lista_busqueda);
+        recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
 
         pantalla = new Dialog(this);
         resultado = new ArrayList();
         buscador = (EditText) findViewById(R.id.buscador);
         buscar = (CircleImageView) findViewById(R.id.buscar);
+        grafico = (ImageButton) findViewById(R.id.grafico_circular);
+        abrir_list = (ImageButton) findViewById(R.id.abrir_list);
+
+        grafico.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PieChart graf;
+                pantalla.setContentView(R.layout.popup_grafico_circular);
+                graf = (PieChart) pantalla.findViewById(R.id.piechart);
+
+                ArrayList<PieEntry> visitors = new ArrayList<>();
+                visitors.add(new PieEntry(Integer.parseInt(proteinas.getText().toString()), "Proteinas"));
+                visitors.add(new PieEntry(Integer.parseInt(fibra.getText().toString()), "Fibra"));
+                visitors.add(new PieEntry(Integer.parseInt(carbohidratos.getText().toString()), "Carbohidratos"));
+                visitors.add(new PieEntry(Integer.parseInt(grasas.getText().toString()), "Grasas"));
+
+                PieDataSet pieDataSet = new PieDataSet(visitors, "Alimentación");
+                pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+                pieDataSet.setValueTextColor(Color.BLACK);
+                pieDataSet.setValueTextSize(16f);
+
+                PieData pieData = new PieData(pieDataSet);
+                graf.setData(pieData);
+                graf.getDescription().setEnabled(false);
+                graf.setCenterText("Alimentación");
+                graf.animate();
+                pantalla.show();
+            }
+        });
+
+        abrir_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!seleccionado) {
+                    seleccionado = true;
+                    recycler.setAdapter(adaptadorDatosAlimentosSeleccionados);
+                }
+                else {
+                    seleccionado = false;
+                    recycler.setAdapter(adaptador);
+                }
+            }
+        });
 
         //plan
         kcalorias = (TextView) findViewById(R.id.kcal);
@@ -60,8 +120,6 @@ public class contador_calorias extends AppCompatActivity implements Interfaz{
 
 
         ing = (Spinner) findViewById(R.id.ingrediente);
-        recycler = (RecyclerView) findViewById(R.id.lista_busqueda);
-        recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
         String [] niv = new String[] {"alimentos", "comidas"};
         ArrayAdapter<String> aaDep;
         aaDep = new ArrayAdapter<String>(this, R.layout.spinner_item, niv);
@@ -88,6 +146,7 @@ public class contador_calorias extends AppCompatActivity implements Interfaz{
     public void Respuesta(JSONObject datos) throws JSONException {
         if (datos.getInt("codigo") == 200) {
             if (llamada == 1) {
+                llamada = 5;
                 JSONArray hint = datos.getJSONArray("hints");
                 if (hint == null) {
                     Toast.makeText(contador_calorias.this, "No hay resultados para esta búsqueda", Toast.LENGTH_LONG).show();
@@ -125,6 +184,7 @@ public class contador_calorias extends AppCompatActivity implements Interfaz{
                         resultado.add(new Alimento(id, contenido_plato, url_img, nombre_plato_ing, kcal, prot, gras, carbo, fibra));
                         //AHORA LOS DATOS DE LOS NUTRIENTES ESTAN EN 100G
                         adaptador = new AdaptadorDatosAlimentos(resultado, this);
+                        seleccionado = false;
                         recycler.setAdapter(adaptador);
                         adaptador.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -169,6 +229,7 @@ public class contador_calorias extends AppCompatActivity implements Interfaz{
                                             req.put("proteina", alimento_seleccionado.getProt());
                                             req.put("carbo", alimento_seleccionado.getCarbo());
                                             req.put("grasas", alimento_seleccionado.getGras());
+                                            req.put("nombre_al", alimento_seleccionado.getNombre_plato_ing());
                                         } catch (JSONException e) {
                                             e.printStackTrace();
                                         }
@@ -184,15 +245,33 @@ public class contador_calorias extends AppCompatActivity implements Interfaz{
                     }
                 }
             }
-            else if (llamada == 2) {
-                System.out.println(datos);
+            else if (llamada == 2) {//Get alimentacion dia
+
+                llamada = 5;
                 kcalorias.setText(datos.getString("kcal"));
                 proteinas.setText(datos.getString("proteina"));
                 carbohidratos.setText(datos.getString("carbo"));
                 fibra.setText(datos.getString("fibra"));
                 grasas.setText(datos.getString("grasas"));
+
+                JSONArray aliment = datos.getJSONArray("alimentos");
+                alimentos_añadidos = new ArrayList<>();
+                for(int i = 0; i < aliment.length(); i++) {
+                    //prot, gras, carbo, fibra
+                    System.out.println(aliment.toString());
+                    JSONObject obj = (JSONObject) aliment.get(i);
+                    Alimento aux = new Alimento(obj.getString("id_alimento"), "", "", obj.getString("nombre_al"),
+                            obj.getDouble("kcal_al")*obj.getInt("cantidad")/100,
+                            obj.getDouble("proteina_al")*obj.getInt("cantidad")/100,
+                            obj.getDouble("grasas_al")*obj.getInt("cantidad")/100,
+                            obj.getDouble("carbo_al")*obj.getInt("cantidad")/100,
+                            obj.getDouble("fibra_al")*obj.getInt("cantidad")/100);
+                    alimentos_añadidos.add(aux);
+                }
+                adaptadorDatosAlimentosSeleccionados = new AdaptadorDatosAlimentosSeleccionados(alimentos_añadidos, this);
             }
-            else if (llamada == 3) {
+            else if (llamada == 3) { //Get plan user
+
                 kcalorias_o.setText(datos.getString("Kcal"));
                 proteinas_o.setText(datos.getString("Proteinas"));
                 carbohidratos_o.setText(datos.getString("Carbohidratos"));
@@ -202,6 +281,33 @@ public class contador_calorias extends AppCompatActivity implements Interfaz{
                 llamada = 2;
                 Connection con2 = new Connection(contador_calorias.this);
                 con2.execute("http://169.254.145.10:3000/alimentacion/dia/"+UsuarioSingleton.getInstance().getId(),"GET",null);
+            }
+
+            else if (adaptadorDatosAlimentosSeleccionados.getLlamada() == 2) {
+
+                System.out.println("LO HE ELIMINADO");
+                kcalorias.setText(datos.getString("kcal"));
+                proteinas.setText(datos.getString("proteina"));
+                carbohidratos.setText(datos.getString("carbo"));
+                fibra.setText(datos.getString("fibra"));
+                grasas.setText(datos.getString("grasas"));
+
+                JSONArray aliment = datos.getJSONArray("alimentos");
+                alimentos_añadidos = new ArrayList<>();
+                for(int i = 0; i < aliment.length(); i++) {
+                    //prot, gras, carbo, fibra
+                    System.out.println(aliment.toString());
+                    JSONObject obj = (JSONObject) aliment.get(i);
+                    Alimento aux = new Alimento(obj.getString("id_alimento"), "", "", obj.getString("nombre_al"),
+                            obj.getDouble("kcal_al")*obj.getInt("cantidad")/100,
+                            obj.getDouble("proteina_al")*obj.getInt("cantidad")/100,
+                            obj.getDouble("grasas_al")*obj.getInt("cantidad")/100,
+                            obj.getDouble("carbo_al")*obj.getInt("cantidad")/100,
+                            obj.getDouble("fibra_al")*obj.getInt("cantidad")/100);
+                    alimentos_añadidos.add(aux);
+                }
+                adaptadorDatosAlimentosSeleccionados = new AdaptadorDatosAlimentosSeleccionados(alimentos_añadidos, this);
+                recycler.setAdapter(adaptadorDatosAlimentosSeleccionados);
             }
         }
         else {
