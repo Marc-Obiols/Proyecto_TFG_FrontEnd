@@ -50,9 +50,8 @@ public class historial_alimentacion extends Fragment implements Interfaz{
                 adaptador.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        System.out.println("VOY CAMBIAR DE PANTALLA");
-                        Intent i = new Intent(getActivity(), Ejercicio.class);
-                        i.putExtra("ejercicio", list.get(recycler.getChildAdapterPosition(v)));
+                        Intent i = new Intent(getActivity(), Alimentacion_concreta.class);
+                        i.putExtra("pos", recycler.getChildAdapterPosition(v));
                         startActivity(i);
                     }
                 });

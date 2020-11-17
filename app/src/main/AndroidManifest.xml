@@ -12,8 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto_TFG_FrontEnd"
         android:usesCleartextTraffic="true">
-        <activity android:name=".contador_calorias">
-        </activity>
+        <activity android:name=".Alimentacion_concreta"></activity>
+        <activity android:name=".contador_calorias" />
         <activity
             android:name=".datos_user"
             android:label="@string/title_activity_datos_user"

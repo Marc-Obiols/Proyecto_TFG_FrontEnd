@@ -27,7 +27,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Rutinas extends AppCompatActivity implements Interfaz {
 
     private BottomNavigationView menu;
-    private ArrayList<Pair<String,String>> listDatosRutinas;
+    private ArrayList<DatosRutina> listDatosRutinas;
     private CircleImageView crear_rutina;
     private Dialog pantalla_crear;
     private int llamada;
@@ -126,19 +126,21 @@ public class Rutinas extends AppCompatActivity implements Interfaz {
                     llamada = 5;
                     JSONArray nombres = datos.getJSONArray("array");
                     if (nombres.length() == 0) {
+                        listDatosRutinas = new ArrayList<>();
+                        adaptador = new AdaptadorDatosRutinas(listDatosRutinas, this,1);
                         Toast.makeText(Rutinas.this, "No hay rutinas creadas", Toast.LENGTH_LONG).show();
                     }
                     else {
                         listDatosRutinas = new ArrayList<>();
                         for (int i = 0; i < nombres.length(); i++) {
                             JSONObject aux1 = nombres.getJSONObject(i);
-                            listDatosRutinas.add(i, new Pair<>(aux1.getString("nombre"), aux1.getString("id")));
+                            listDatosRutinas.add(i, new DatosRutina(aux1.getString("nombre"), aux1.getString("id"), aux1.getInt("tiempo_descanso")));
                         }
                         adaptador = new AdaptadorDatosRutinas(listDatosRutinas, this,1);
                     }
                 }
                 else if (llamada == 2) {
-                    listDatosRutinas.add(new Pair<String, String>(datos.getString("nombre"), datos.getString("_id")));
+                    listDatosRutinas.add(new DatosRutina(datos.getString("nombre"), datos.getString("_id"), datos.getInt("tiempo_descanso")));
                     adaptador = new AdaptadorDatosRutinas(listDatosRutinas, this, 1);
                     llamada = 5;
                 }
@@ -147,7 +149,7 @@ public class Rutinas extends AppCompatActivity implements Interfaz {
                     listDatosRutinas = new ArrayList<>();
                     for (int i = 0; i < nombres.length(); i++) {
                         JSONObject aux1 = nombres.getJSONObject(i);
-                        listDatosRutinas.add(i, new Pair<>(aux1.getString("nombre"), aux1.getString("id")));
+                        listDatosRutinas.add(i, new DatosRutina(aux1.getString("nombre"), aux1.getString("id"), aux1.getInt("tiempo_descanso")));
                     }
                     adaptador = new AdaptadorDatosRutinas(listDatosRutinas, this, 2);
                     llamada = 5;
@@ -158,14 +160,14 @@ public class Rutinas extends AppCompatActivity implements Interfaz {
                     if (nombres.length() != 0) {
                         for (int i = 0; i < nombres.length(); i++) {
                             JSONObject aux1 = nombres.getJSONObject(i);
-                            listDatosRutinas.add(i, new Pair<>(aux1.getString("nombre"), aux1.getString("id")));
+                            listDatosRutinas.add(i, new DatosRutina(aux1.getString("nombre"), aux1.getString("id"), aux1.getInt("tiempo_descanso")));
                         }
                     }
                     adaptador = new AdaptadorDatosRutinas(listDatosRutinas, this,1);
                 }
-                else if (adaptador.getLlamada() == 4) {
-                    String id_rut = listDatosRutinas.get(adaptador.getPos()).second;
-                    listDatosRutinas.set(adaptador.getPos(), new Pair<String, String>(datos.getString("nombre"), id_rut));
+                else if (adaptador.getLlamada() == 4) { //RUTINA MODIFICADA
+                    String id_rut = listDatosRutinas.get(adaptador.getPos()).getId();
+                    listDatosRutinas.set(adaptador.getPos(), new DatosRutina(datos.getString("nombre"), id_rut, datos.getInt("tiempo_descanso")));
                     adaptador = new AdaptadorDatosRutinas(listDatosRutinas, this,1);
                 }
                 recycler.setAdapter(adaptador);

@@ -21,6 +21,7 @@ public class AdaptadorDatosMedidas extends RecyclerView.Adapter<AdaptadorDatosMe
     @Override
     public AdaptadorDatosMedidas.ViewHolderDatosMedidas onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_alimentos,null,false);
+        view.setOnClickListener(this);
         return new AdaptadorDatosMedidas.ViewHolderDatosMedidas(view);
     }
 
@@ -35,12 +36,15 @@ public class AdaptadorDatosMedidas extends RecyclerView.Adapter<AdaptadorDatosMe
     }
 
     public void setOnClickListener(View.OnClickListener listener) {
+        System.out.println("HOLA1");
         this.listener = listener;
     }
 
     @Override
     public void onClick(View v) {
+        System.out.println("HOLA2");
         if (listener!=null) {
+            System.out.println("HOLA3");
             listener.onClick(v);
         }
     }

@@ -25,12 +25,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AdaptadorDatosRutinas extends RecyclerView.Adapter<AdaptadorDatosRutinas.ViewHolderDatosRutinas> {
 
-    ArrayList<Pair<String, String>> listDatos;
+    ArrayList<DatosRutina> listDatos;
     private Context c;
     private Dialog pantalla_eliminar;
     private int llamada, pos, tipo;
 
-    public AdaptadorDatosRutinas(ArrayList<Pair<String, String>> listDatos, Context contexto, int tipo) {
+    public AdaptadorDatosRutinas(ArrayList<DatosRutina> listDatos, Context contexto, int tipo) {
         this.listDatos = listDatos;
         c = contexto;
         llamada = 3;
@@ -84,7 +84,7 @@ public class AdaptadorDatosRutinas extends RecyclerView.Adapter<AdaptadorDatosRu
                 public void onClick(View v) {
                     Intent i = new Intent(c.getApplicationContext(), Rutina.class);
                     i.putExtra("tipo", tipo);
-                    i.putExtra("rutina", listDatos.get(posicion).second);
+                    i.putExtra("rutina", listDatos.get(posicion).getId());
                     c.startActivity(i);
                 }
             });
@@ -99,7 +99,8 @@ public class AdaptadorDatosRutinas extends RecyclerView.Adapter<AdaptadorDatosRu
                     cancelar = (Button) pantalla_eliminar.findViewById(R.id.cancelar);
                     nombre = (EditText) pantalla_eliminar.findViewById(R.id.nuev_nombre);
                     tiempo = (EditText) pantalla_eliminar.findViewById(R.id.nuev_tiempo_desc);
-                    nombre.setText(listDatos.get(posicion).first);
+                    nombre.setText(listDatos.get(posicion).getNombre());
+                    tiempo.setText(Integer.toString(listDatos.get(posicion).getTiempo_desc()));
                     confirmar.setText("Modificar");
 
                     confirmar.setOnClickListener(new View.OnClickListener() {
@@ -123,7 +124,7 @@ public class AdaptadorDatosRutinas extends RecyclerView.Adapter<AdaptadorDatosRu
                                 llamada = 4;
                                 pos = posicion;
                                 Connection con = new Connection((Interfaz) c);
-                                con.execute("http://169.254.145.10:3000/rutina/modificar/" + listDatos.get(posicion).second, "POST", req.toString());
+                                con.execute("http://169.254.145.10:3000/rutina/modificar/" + listDatos.get(posicion).getId(), "POST", req.toString());
                                 pantalla_eliminar.dismiss();
                             }
                         }
@@ -161,7 +162,7 @@ public class AdaptadorDatosRutinas extends RecyclerView.Adapter<AdaptadorDatosRu
                             }
                             llamada = 3;
                             Connection con = new Connection((Interfaz) c);
-                            con.execute("http://169.254.145.10:3000/rutina/eliminar/" + listDatos.get(posicion).second, "POST", req.toString());
+                            con.execute("http://169.254.145.10:3000/rutina/eliminar/" + listDatos.get(posicion).getId(), "POST", req.toString());
                             pantalla_eliminar.dismiss();
                         }
                     });
@@ -177,8 +178,8 @@ public class AdaptadorDatosRutinas extends RecyclerView.Adapter<AdaptadorDatosRu
             });
         }
 
-        public void asignarDatos(Pair<String, String> dato, int position) {
-            nombre_rutina.setText(dato.first);
+        public void asignarDatos(DatosRutina dato, int position) {
+            nombre_rutina.setText(dato.getNombre());
             posicion = position;
         }
     }

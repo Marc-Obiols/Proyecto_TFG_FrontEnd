@@ -126,25 +126,34 @@ public class Rutina extends AppCompatActivity implements Interfaz {
     public void Respuesta(JSONObject datos) throws JSONException {
         try {
             if(datos.getInt("codigo") == 200) {
-                if (llamada == 1) {
+                if (llamada == 1) { //GET LOS DATOS DE UNA RUTINA
                     listDatosEjercicio = new ArrayList<>();
-                    tiempo.setText("Tiempo: " + datos.getInt("tiempo_total"));
+                    double d = datos.getInt("tiempo_total");
+                    d = d/60;
+                    String min_s = String.valueOf(d);
+                    tiempo.setText("Tiempo: " + min_s + " min");
                     tiempo_descanso = datos.getInt("tiempo_descanso");
                     tiempo_total = datos.getInt("tiempo_total");
                     tiempo_desc.setText("Tiempo Descanso: " + datos.getString("tiempo_descanso"));
                     JSONArray aux1 = datos.getJSONArray("ejercicios");
                     JSONArray aux2 = datos.getJSONArray("tiempos");
                     if (aux1.length() == 0) {
+                        Kcal.setText("Gasto calórico: 0");
                         Toast.makeText(Rutina.this, "No hay ejercicios para esta rutina", Toast.LENGTH_LONG).show();
                     } else {
+                        int tiempo = 0;
                         for (int i = 0; i < aux1.length(); i++) {
                             listDatosEjercicio.add(i, new Pair<>(aux1.getString(i), aux2.getInt(i)));
+                            tiempo += aux2.getInt(i);
                         }
+                        double gasto = gasto_kcal(tiempo);
+                        String s=String.valueOf(gasto);
+                        Kcal.setText("Gasto calórico: " + s);
                         adaptador = new AdaptadorDatosEjercicioRutina(listDatosEjercicio, this, id_rutina, tipo);
                         recycler.setAdapter(adaptador);
                     }
                 }
-                else if (llamada == 2) {
+                else if (llamada == 2) { // PEDIR TODOS LOS EJERCICIOS DEL SISTEMA
                     JSONArray nombres = datos.getJSONArray("array");
                     if (nombres.length() == 0) {
                         Toast.makeText(Rutina.this, "No se ha encontrado ningun ejercicio", Toast.LENGTH_LONG).show();
@@ -164,47 +173,76 @@ public class Rutina extends AppCompatActivity implements Interfaz {
                         recyclerEjercicios.setAdapter(adaptadorEjercicios);
                     }
                 }
-                else if (llamada == 3) {
-                    tiempo.setText("Tiempo: " + datos.getString("tiempo_total"));
+                else if (llamada == 3) { //AÑADIR EJERCICIO A LA RUTINA
+                    double d = datos.getInt("tiempo_total");
+                    d = d/60;
+                    String min_s = String.valueOf(d);
+                    tiempo.setText("Tiempo: " + min_s + " min");
                     tiempo_total = datos.getInt("tiempo_total");
                     JSONArray aux1 = datos.getJSONArray("ejercicios");
                     JSONArray aux2 = datos.getJSONArray("tiempos");
+                    int tiempo = 0;
+                    for (int i = 0; i < aux1.length(); i++) {
+                        listDatosEjercicio.add(i, new Pair<>(aux1.getString(i), aux2.getInt(i)));
+                        tiempo += aux2.getInt(i);
+                    }
+                    double gasto = gasto_kcal(tiempo);
+                    String s = String.valueOf(gasto);
+                    Kcal.setText("Gasto calórico: " + s);
                     listDatosEjercicio.add(new Pair<>(aux1.getString(aux1.length()-1), aux2.getInt(aux2.length()-1)));
                     adaptador = new AdaptadorDatosEjercicioRutina(listDatosEjercicio, this, id_rutina, tipo);
                     recycler.setAdapter(adaptador);
                 }
                 else if (adaptador.getLlamada() == 3) {
                     listDatosEjercicio = new ArrayList<>();
-                    tiempo.setText("Tiempo: " + datos.getInt("tiempo_total"));
+                    double d = datos.getInt("tiempo_total");
+                    d = d/60;
+                    String min_s = String.valueOf(d);
+                    tiempo.setText("Tiempo: " + min_s + " min");
                     tiempo_descanso = datos.getInt("tiempo_descanso");
                     tiempo_total = datos.getInt("tiempo_total");
                     tiempo_desc.setText("Tiempo Descanso: " + datos.getString("tiempo_descanso"));
                     JSONArray aux1 = datos.getJSONArray("ejercicios");
                     JSONArray aux2 = datos.getJSONArray("tiempos");
                     if (aux1.length() == 0) {
+                        Kcal.setText("Gasto calórico: 0");
                         Toast.makeText(Rutina.this, "No hay ejercicios para esta rutina", Toast.LENGTH_LONG).show();
                     } else {
+                        int tiempo = 0;
                         for (int i = 0; i < aux1.length(); i++) {
                             listDatosEjercicio.add(i, new Pair<>(aux1.getString(i), aux2.getInt(i)));
+                            tiempo += aux2.getInt(i);
                         }
+                        double gasto = gasto_kcal(tiempo);
+                        String s=String.valueOf(gasto);
+                        Kcal.setText("Gasto calórico: " + s);
                     }
                     adaptador = new AdaptadorDatosEjercicioRutina(listDatosEjercicio, this, id_rutina, tipo);
                     recycler.setAdapter(adaptador);
                 }
                 else if (adaptador.getLlamada() == 4) {
                     listDatosEjercicio = new ArrayList<>();
-                    tiempo.setText("Tiempo: " + datos.getInt("tiempo_total"));
+                    double d = datos.getInt("tiempo_total");
+                    d = d/60;
+                    String min_s = String.valueOf(d);
+                    tiempo.setText("Tiempo: " + min_s + " min");
                     tiempo_descanso = datos.getInt("tiempo_descanso");
                     tiempo_total = datos.getInt("tiempo_total");
                     tiempo_desc.setText("Tiempo Descanso: " + datos.getString("tiempo_descanso"));
                     JSONArray aux1 = datos.getJSONArray("ejercicios");
                     JSONArray aux2 = datos.getJSONArray("tiempos");
                     if (aux1.length() == 0) {
+                        Kcal.setText("Gasto calórico: 0");
                         Toast.makeText(Rutina.this, "No hay ejercicios para esta rutina", Toast.LENGTH_LONG).show();
                     } else {
+                        int tiempo = 0;
                         for (int i = 0; i < aux1.length(); i++) {
                             listDatosEjercicio.add(i, new Pair<>(aux1.getString(i), aux2.getInt(i)));
+                            tiempo += aux2.getInt(i);
                         }
+                        double gasto = gasto_kcal(tiempo);
+                        String s=String.valueOf(gasto);
+                        Kcal.setText("Gasto calórico: " + s);
                     }
                     adaptador = new AdaptadorDatosEjercicioRutina(listDatosEjercicio, this, id_rutina, tipo);
                     recycler.setAdapter(adaptador);
@@ -217,5 +255,15 @@ public class Rutina extends AppCompatActivity implements Interfaz {
         } catch (JSONException err) {
             err.printStackTrace();
         }
+    }
+
+    private double gasto_kcal(int tiempo) {
+        double segundos = tiempo;
+        System.out.println(tiempo);
+        double minutos = segundos/60;
+        double value = 0.081*UsuarioSingleton.getInstance().getPeso_act()*minutos;
+        System.out.println(UsuarioSingleton.getInstance().getPeso_act());
+        System.out.println(value);
+        return  Math.floor(value * 100) / 100;
     }
 }
