@@ -3,10 +3,13 @@ package com.example.proyecto_tfg_frontend;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.squareup.picasso.Picasso;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -36,6 +39,12 @@ public class Inicio extends AppCompatActivity {
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+        TextView gmail = findViewById(R.id.gmail_inicio);
+        gmail.setText(UsuarioSingleton.getInstance().getMail());
+        TextView username = findViewById(R.id.username_inicio);
+        gmail.setText(UsuarioSingleton.getInstance().getUsername());
+        ImageView img = findViewById(R.id.foto_perfil_inicio);
+        Picasso.get().load("http://169.254.145.10:3000/users/"+ UsuarioSingleton.getInstance().getId()+"/image").into(img);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(

@@ -33,6 +33,8 @@ public class Log_in extends AppCompatActivity implements Interfaz {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
+        System.out.println("ESTOY EN LOGIN CREATE");
+
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
     }

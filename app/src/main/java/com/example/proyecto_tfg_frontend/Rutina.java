@@ -36,6 +36,7 @@ public class Rutina extends AppCompatActivity implements Interfaz {
     private ArrayList<String> listDatosEjercicioSeleccionar;
     private Dialog pantalla_añadir_ejercicio;
     private TextView tiempo, Kcal, tiempo_desc;
+    private Button copiar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,8 @@ public class Rutina extends AppCompatActivity implements Interfaz {
         setContentView(R.layout.activity_rutina);
         id_rutina = getIntent().getStringExtra("rutina");
         tipo = getIntent().getIntExtra("tipo", 1);
+
+        copiar = (Button) findViewById(R.id.copiar);
 
         tiempo = (TextView) findViewById(R.id.tiempo);
         tiempo_desc = (TextView) findViewById(R.id.tiempo_descanso);
@@ -73,7 +76,32 @@ public class Rutina extends AppCompatActivity implements Interfaz {
         });
 
         añadir_ejercicio = (CircleImageView) findViewById(R.id.añadir_ejercicio_rutina);
-        if (tipo == 2) añadir_ejercicio.setVisibility(View.INVISIBLE);
+        if (tipo == 1) copiar.setVisibility(View.INVISIBLE);
+        else if (tipo == 2) {
+            copiar.setVisibility(View.INVISIBLE);
+            añadir_ejercicio.setVisibility(View.INVISIBLE);
+        }
+        else {
+            empezar_rutina.setVisibility(View.INVISIBLE);
+            añadir_ejercicio.setVisibility(View.INVISIBLE);
+            copiar.setVisibility(View.VISIBLE);
+            copiar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    JSONObject req = new JSONObject();
+                    try {
+                        req.put("id_user", UsuarioSingleton.getInstance().getId());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    llamada = 1;
+                    Connection con = new Connection(Rutina.this);
+                    con.execute("http://169.254.145.10:3000/rutina/copiar/"+id_rutina, "POST", req.toString());
+                    Toast.makeText(Rutina.this, "Se ha copiado la rutina", Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+
         añadir_ejercicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

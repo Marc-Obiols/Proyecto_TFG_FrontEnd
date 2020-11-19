@@ -58,5 +58,10 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:src="@drawable/ic_emepzar"/>
-
+    <Button
+        android:id="@+id/copiar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Copiar"
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>

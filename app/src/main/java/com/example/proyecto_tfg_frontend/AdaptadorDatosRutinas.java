@@ -74,7 +74,7 @@ public class AdaptadorDatosRutinas extends RecyclerView.Adapter<AdaptadorDatosRu
             nombre_rutina = itemView.findViewById(R.id.nombre_rutina);
             modificar = itemView.findViewById(R.id.modficar_rut);
             eliminar = itemView.findViewById(R.id.eliminar_rut);
-            if (tipo == 2) {
+            if (tipo == 2 || tipo == 3) {
                 modificar.setVisibility(View.INVISIBLE);
                 eliminar.setVisibility(View.INVISIBLE);
             }

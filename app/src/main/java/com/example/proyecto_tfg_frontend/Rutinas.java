@@ -112,6 +112,15 @@ public class Rutinas extends AppCompatActivity implements Interfaz {
                 }
                 else if (item.getItemId() == R.id.otras) {
                     crear_rutina.setVisibility(View.INVISIBLE);
+                    JSONObject req = new JSONObject();
+                    try {
+                        req.put("id", UsuarioSingleton.getInstance().getId());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    llamada = 4;
+                    Connection con = new Connection(Rutinas.this);
+                    con.execute("http://169.254.145.10:3000/rutina/usuarios/datos", "GET", req.toString());
                 }
                 return true;
             }
@@ -152,6 +161,16 @@ public class Rutinas extends AppCompatActivity implements Interfaz {
                         listDatosRutinas.add(i, new DatosRutina(aux1.getString("nombre"), aux1.getString("id"), aux1.getInt("tiempo_descanso")));
                     }
                     adaptador = new AdaptadorDatosRutinas(listDatosRutinas, this, 2);
+                    llamada = 5;
+                }
+                else if (llamada == 4) {
+                    JSONArray nombres = datos.getJSONArray("array");
+                    listDatosRutinas = new ArrayList<>();
+                    for (int i = 0; i < nombres.length(); i++) {
+                        JSONObject aux1 = nombres.getJSONObject(i);
+                        listDatosRutinas.add(i, new DatosRutina(aux1.getString("nombre"), aux1.getString("id"), aux1.getInt("tiempo_descanso")));
+                    }
+                    adaptador = new AdaptadorDatosRutinas(listDatosRutinas, this, 3);
                     llamada = 5;
                 }
                 else if (adaptador.getLlamada() == 3) {
