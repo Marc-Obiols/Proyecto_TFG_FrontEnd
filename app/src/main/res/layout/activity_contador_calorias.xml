@@ -31,7 +31,7 @@
                 android:id="@+id/buscar"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/ic_grafico"/>
+                android:src="@drawable/ic_search"/>
             <EditText
                 android:id="@+id/buscador"
                 android:layout_width="match_parent"
@@ -257,7 +257,7 @@
                     android:id="@+id/kcal_ob"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kcal"
+                    android:text=""
                     android:textColor="@color/black"
                     android:gravity="center_horizontal"
                     android:textSize="10dp"
@@ -283,7 +283,7 @@
                     android:id="@+id/proteinas_o"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Proteinas"
+                    android:text=""
                     android:textColor="@color/black"
                     android:gravity="center_horizontal"
                     android:textSize="10dp"
@@ -309,7 +309,7 @@
                     android:id="@+id/grasas_o"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Grasas"
+                    android:text=""
                     android:textColor="@color/black"
                     android:gravity="center_horizontal"
                     android:textSize="10dp"
@@ -335,7 +335,7 @@
                     android:id="@+id/fibra_o"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fibra"
+                    android:text=""
                     android:textColor="@color/black"
                     android:gravity="center_horizontal"
                     android:textSize="10dp"
@@ -361,7 +361,6 @@
                     android:id="@+id/carbo_hidra_o"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Carbohidratos"
                     android:textColor="@color/black"
                     android:gravity="center_horizontal"
                     android:textSize="10dp"
@@ -413,7 +412,6 @@
                     android:id="@+id/kcal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kcal"
                     android:textColor="@color/black"
                     android:gravity="center_horizontal"
                     android:textSize="10dp"
@@ -439,7 +437,6 @@
                     android:id="@+id/proteinas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Proteinas"
                     android:textColor="@color/black"
                     android:gravity="center_horizontal"
                     android:textSize="10dp"
@@ -465,7 +462,6 @@
                     android:id="@+id/grasas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Grasas"
                     android:textColor="@color/black"
                     android:gravity="center_horizontal"
                     android:textSize="10dp"
@@ -491,7 +487,6 @@
                     android:id="@+id/fibra"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fibra"
                     android:textColor="@color/black"
                     android:gravity="center_horizontal"
                     android:textSize="10dp"
@@ -517,7 +512,6 @@
                     android:id="@+id/carbo_hidra"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Carbohidratos"
                     android:textColor="@color/black"
                     android:gravity="center_horizontal"
                     android:textSize="10dp"
@@ -525,5 +519,4 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </GridLayout>
-
 </RelativeLayout>

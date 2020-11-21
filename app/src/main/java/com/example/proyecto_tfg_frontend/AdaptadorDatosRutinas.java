@@ -7,8 +7,11 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -94,6 +97,8 @@ public class AdaptadorDatosRutinas extends RecyclerView.Adapter<AdaptadorDatosRu
                 public void onClick(View v) {
                     Button confirmar, cancelar;
                     EditText nombre, tiempo;
+                    CheckBox publica;
+                    Spinner dificultad;
                     pantalla_eliminar.setContentView(R.layout.popup_crear_rutina);
                     confirmar = (Button) pantalla_eliminar.findViewById(R.id.confirmar);
                     cancelar = (Button) pantalla_eliminar.findViewById(R.id.cancelar);
@@ -102,6 +107,16 @@ public class AdaptadorDatosRutinas extends RecyclerView.Adapter<AdaptadorDatosRu
                     nombre.setText(listDatos.get(posicion).getNombre());
                     tiempo.setText(Integer.toString(listDatos.get(posicion).getTiempo_desc()));
                     confirmar.setText("Modificar");
+                    dificultad = (Spinner) pantalla_eliminar.findViewById(R.id.dificultad);
+                    publica = (CheckBox) pantalla_eliminar.findViewById(R.id.Publica);
+
+                    String [] niv = new String[] {"fácil", "normal", "difícil"};
+                    ArrayAdapter<String> aaDep;
+                    aaDep = new ArrayAdapter<String>(c, R.layout.spinner_item, niv); //activity para mostrar, tipo de spinner, listado de valores
+                    aaDep.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    dificultad.setAdapter(aaDep);
+                    publica.setChecked(listDatos.get(posicion).isPublica());
+                    dificultad.setContentDescription(listDatos.get(posicion).getDificultad());
 
                     confirmar.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -118,6 +133,8 @@ public class AdaptadorDatosRutinas extends RecyclerView.Adapter<AdaptadorDatosRu
                                 try {
                                     req.put("nombre", nom);
                                     req.put("tiempo_descanso", Integer.parseInt(tiempo.getText().toString()));
+                                    req.put("publica", publica.isChecked());
+                                    req.put("dificultad", dificultad.getSelectedItem().toString());
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }

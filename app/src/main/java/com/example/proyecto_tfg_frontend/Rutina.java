@@ -202,6 +202,7 @@ public class Rutina extends AppCompatActivity implements Interfaz {
                     }
                 }
                 else if (llamada == 3) { //AÑADIR EJERCICIO A LA RUTINA
+                    System.out.println("AÑADIENDO EJERCICIO");
                     double d = datos.getInt("tiempo_total");
                     d = d/60;
                     String min_s = String.valueOf(d);
@@ -211,7 +212,7 @@ public class Rutina extends AppCompatActivity implements Interfaz {
                     JSONArray aux2 = datos.getJSONArray("tiempos");
                     int tiempo = 0;
                     for (int i = 0; i < aux1.length(); i++) {
-                        listDatosEjercicio.add(i, new Pair<>(aux1.getString(i), aux2.getInt(i)));
+                        System.out.println(aux1.getString(i));
                         tiempo += aux2.getInt(i);
                     }
                     double gasto = gasto_kcal(tiempo);

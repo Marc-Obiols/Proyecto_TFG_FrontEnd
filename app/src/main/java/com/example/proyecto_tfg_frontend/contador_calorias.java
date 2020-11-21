@@ -1,6 +1,7 @@
 package com.example.proyecto_tfg_frontend;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.app.Dialog;
@@ -53,6 +54,8 @@ public class contador_calorias extends AppCompatActivity implements Interfaz{
 
         recycler = (RecyclerView) findViewById(R.id.lista_busqueda);
         recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
+        DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(recycler.getContext(), LinearLayoutManager.VERTICAL);
+        recycler.addItemDecoration(mDividerItemDecoration);
 
         pantalla = new Dialog(this);
         resultado = new ArrayList();
@@ -69,10 +72,12 @@ public class contador_calorias extends AppCompatActivity implements Interfaz{
                 graf = (PieChart) pantalla.findViewById(R.id.piechart);
 
                 ArrayList<PieEntry> visitors = new ArrayList<>();
-                visitors.add(new PieEntry(Integer.parseInt(proteinas.getText().toString()), "Proteinas"));
-                visitors.add(new PieEntry(Integer.parseInt(fibra.getText().toString()), "Fibra"));
-                visitors.add(new PieEntry(Integer.parseInt(carbohidratos.getText().toString()), "Carbohidratos"));
-                visitors.add(new PieEntry(Integer.parseInt(grasas.getText().toString()), "Grasas"));
+                System.out.println("EL VALOR ES:");
+                System.out.println(Double.parseDouble(proteinas.getText().toString()));
+                visitors.add(new PieEntry((float) Double.parseDouble(proteinas.getText().toString()), "Proteinas"));
+                visitors.add(new PieEntry((float) Double.parseDouble(fibra.getText().toString()), "Fibra"));
+                visitors.add(new PieEntry((float) Double.parseDouble(carbohidratos.getText().toString()), "Carbohidratos"));
+                visitors.add(new PieEntry((float) Double.parseDouble(grasas.getText().toString()), "Grasas"));
 
                 PieDataSet pieDataSet = new PieDataSet(visitors, "Alimentación");
                 pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);

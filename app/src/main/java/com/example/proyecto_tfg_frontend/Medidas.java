@@ -66,6 +66,7 @@ public class Medidas extends Fragment {
         LineDataSet lineadata1 = new LineDataSet(data, "Historial");
         lineadata1.setColor(Color.parseColor("#041DF4"));
         LineDataSet lineadata2 = new LineDataSet(pes_id, "Peso deseado");
+        lineadata2.setColor(Color.parseColor("#FF0000"));
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
         dataSets.add(lineadata1);
         dataSets.add(lineadata2);

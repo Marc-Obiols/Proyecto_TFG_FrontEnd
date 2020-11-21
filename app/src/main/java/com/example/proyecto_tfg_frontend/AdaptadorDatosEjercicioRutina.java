@@ -84,7 +84,7 @@ public class AdaptadorDatosEjercicioRutina extends RecyclerView.Adapter <Adaptad
             foto_eliminar = itemView.findViewById(R.id.eliminar_ejer);
             tiempo_ejercicio = itemView.findViewById(R.id.tiempo_ejercicio);
 
-            if (tipo == 2) {
+            if (tipo == 2 || tipo == 3) {
                 foto_mod.setVisibility(View.INVISIBLE);
                 foto_eliminar.setVisibility(View.INVISIBLE);
             }

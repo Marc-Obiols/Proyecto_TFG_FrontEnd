@@ -29,21 +29,24 @@ public class Inicio extends AppCompatActivity {
         setContentView(R.layout.activity_inicio);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
+
+        /*FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        TextView gmail = findViewById(R.id.gmail_inicio);
+        View hView = navigationView.getHeaderView(0);
+        TextView gmail = hView.findViewById(R.id.gmail_inicio);
         gmail.setText(UsuarioSingleton.getInstance().getMail());
-        TextView username = findViewById(R.id.username_inicio);
-        gmail.setText(UsuarioSingleton.getInstance().getUsername());
-        ImageView img = findViewById(R.id.foto_perfil_inicio);
+        TextView username = hView.findViewById(R.id.username_inicio);
+        username.setText(UsuarioSingleton.getInstance().getUsername());
+        ImageView img = hView.findViewById(R.id.foto_perfil_inicio);
         Picasso.get().load("http://169.254.145.10:3000/users/"+ UsuarioSingleton.getInstance().getId()+"/image").into(img);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.

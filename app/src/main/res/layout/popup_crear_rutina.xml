@@ -21,7 +21,7 @@
     <EditText
         android:id="@+id/nuev_nombre"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:layout_alignLeft="@+id/nombre_rutina"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="54dp" />
@@ -44,22 +44,48 @@
         android:layout_marginLeft="145dp"
         android:layout_marginTop="30dp"/>
 
+    <CheckBox
+        android:id="@+id/Publica"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/confirmar"
+        android:layout_below="@+id/nuev_tiempo_desc"
+        android:layout_alignParentLeft="true"
+        android:text="Pública" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/nuev_tiempo_desc"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/nuev_tiempo_desc">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dificultad:" />
+
+        <Spinner
+            android:id="@+id/dificultad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
     <Button
         android:id="@+id/confirmar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/nuev_tiempo_desc"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="42dp"
+        android:layout_alignParentBottom="true"
         android:text="Crear"
-        android:textAllCaps="false"
-        android:layout_marginTop="30dp"/>
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/cancelar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/nuev_tiempo_desc"
+        android:layout_alignParentBottom="true"
         android:layout_marginRight="40dp"
         android:layout_alignParentRight="true"
         android:text="Cancelar"
