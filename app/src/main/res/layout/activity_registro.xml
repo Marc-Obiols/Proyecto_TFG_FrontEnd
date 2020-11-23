@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/registrarse"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
+    android:padding="10dp"
     tools:context=".registro">
 
     <ScrollView
@@ -19,31 +20,48 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <EditText
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="username" />
+                android:hint="Nombre de usuario"
+                android:textColorHint="@color/white"
+                android:background="@drawable/custom_edittext"
+                android:drawableLeft="@drawable/ic_action_name"
+                android:paddingLeft="5dp"/>
 
             <EditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="password"
-                android:inputType="textPassword" />
+                android:hint="Contraseña"
+                android:layout_marginTop="10dp"
+                android:inputType="textPassword"
+                android:textColorHint="@color/white"
+                android:paddingLeft="5dp"
+                android:drawableLeft="@drawable/ic_action_pass"
+                android:background="@drawable/custom_edittext"/>
 
             <EditText
                 android:id="@+id/mail"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="email" />
+                android:hint="Gmail"
+                android:drawableLeft="@drawable/ic_mail"
+                android:paddingLeft="5dp"
+                android:textColorHint="@color/white"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_edittext"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity=""
+                android:layout_marginTop="10dp">
 
                 <EditText
                     android:id="@+id/etBirthday"
@@ -55,20 +73,25 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_marginTop="15dp"
-                    android:text="Mes/Dia/Año" />
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:text="Mes/Dia/Año"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/white"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
 
                 <TextView
+                    android:layout_marginLeft="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:textSize="18dp"
+                    android:textColor="@color/white"
                     android:text="Altura: " />
 
                 <EditText
@@ -82,11 +105,14 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:textColor="@color/white"
                     android:layout_marginLeft="5dp"
                     android:text="Peso actual: " />
 
@@ -101,11 +127,14 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:textColor="@color/white"
                     android:layout_marginLeft="5dp"
                     android:text="Peso deseado: " />
 
@@ -118,15 +147,19 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
                 <CheckBox
                     android:id="@+id/hombre"
                     android:text="Hombre"
+                    android:textSize="18dp"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"/>
                 <CheckBox
                     android:id="@+id/mujer"
                     android:text="Mujer"
+                    android:textSize="18dp"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"/>
             </LinearLayout>
@@ -136,17 +169,13 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="122dp"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginBottom="96dp"
-        android:background="@drawable/custom_button"
+        android:background="@drawable/gradient_elementos"
         android:onClick="Registrarse"
         android:text="Registrarse"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
-        app:layout_constraintVertical_bias="0.0" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"/>
+</RelativeLayout>

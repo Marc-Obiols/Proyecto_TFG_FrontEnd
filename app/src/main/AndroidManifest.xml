@@ -16,8 +16,7 @@
         <activity android:name=".contador_calorias" />
         <activity
             android:name=".datos_user"
-            android:label="@string/title_activity_datos_user"
-            android:theme="@style/Theme.Proyecto_TFG_FrontEnd.NoActionBar" />
+            android:label="@string/title_activity_datos_user" />
         <activity
             android:name=".Inicio"
             android:label="@string/title_activity_inicio"

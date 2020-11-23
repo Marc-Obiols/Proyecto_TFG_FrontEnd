@@ -33,18 +33,20 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/gradient_elementos"
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/ic_data_user"/>
+                        android:src="@drawable/ic_data_user"
+                        app:tint="@color/white"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Información"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:gravity="center_horizontal"
                         android:textSize="16dp"
                         android:textStyle="bold"/>
@@ -59,24 +61,26 @@
             android:layout_marginBottom="10dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="6dp"
-            android:layout_columnWeight="2"
+            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:foreground="?selectableItemBackground">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
+                android:background="@drawable/gradient_elementos"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@mipmap/ic_ejercicio"/>
+                    app:tint="@color/white"
+                    android:src="@drawable/ic_ejercicio"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Ejercicios"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:gravity="center_horizontal"
                     android:textSize="16dp"
                     android:textStyle="bold"/>
@@ -98,20 +102,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
+                android:background="@drawable/gradient_elementos"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
+                    app:tint="@color/white"
                     android:src="@drawable/ic_rutina"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Rutinas"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:gravity="center_horizontal"
                     android:textSize="16dp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
@@ -130,17 +137,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
+                android:background="@drawable/gradient_elementos"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
+                    app:tint="@color/white"
                     android:src="@drawable/ic_dietas"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Dietas"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:gravity="center_horizontal"
                     android:textSize="16dp"
                     android:textStyle="bold"/>
@@ -162,17 +171,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
+                android:background="@drawable/gradient_elementos"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/ic_rutina"/>
+                    app:tint="@color/white"
+                    android:src="@drawable/ic_comida"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Contador calorías"
-                    android:textColor="@color/black"
+                    android:text="Alimentación"
+                    android:textColor="@color/white"
                     android:gravity="center_horizontal"
                     android:textSize="16dp"
                     android:textStyle="bold"/>
@@ -194,17 +205,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
+                android:background="@drawable/gradient_elementos"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
+                    app:tint="@color/white"
                     android:src="@drawable/ic_grafico"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Progreso"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:gravity="center_horizontal"
                     android:textSize="16dp"
                     android:textStyle="bold"/>

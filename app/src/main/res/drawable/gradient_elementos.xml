@@ -3,9 +3,9 @@
     <item>
         <shape>
             <gradient
-                android:startColor="@color/Fondo_pantalla_top"
-                android:endColor="@color/Fondo_pantalla_bot"
-                android:angle="45" />
+                android:startColor="@color/Rosa_fuxia"
+                android:endColor="@color/Naranja"
+                android:angle="0" />
         </shape>
     </item>
 </selector>

@@ -70,7 +70,7 @@ public class Log_in extends AppCompatActivity implements Interfaz {
                 UsuarioSingleton.getInstance().setAltura(Integer.parseInt(datos.getString("altura")));
                 UsuarioSingleton.getInstance().setPeso_act(Integer.parseInt(datos.getString("peso_actual")));
                 UsuarioSingleton.getInstance().setPeso_des(Integer.parseInt(datos.getString("peso_deseado")));
-                UsuarioSingleton.getInstance().setIMC(Integer.parseInt(datos.getString("IMC")));
+                UsuarioSingleton.getInstance().setIMC(datos.getDouble("IMC"));
                 UsuarioSingleton.getInstance().setMail(datos.getString("email"));
                 UsuarioSingleton.getInstance().setSexo(datos.getString("sexo"));
                 UsuarioSingleton.getInstance().setPeso_id(datos.getInt("peso_ideal"));

@@ -10,8 +10,11 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="Fondo_pantalla_top">#9900cc</color>
-    <color name="Fondo_pantalla_bot">#6600cc</color>
+    <color name="Fondo_pantalla_top">#000066</color>
+    <color name="Fondo_pantalla_bot">#330066</color>
     <color name="Pantalla_registro_bot">#3366ff</color>
     <color name="Pantalla_registro_top">#3399ff</color>
+    <color name="Rosa_fuxia">#E1306C</color>
+    <color name="Naranja">#F56040</color>
+
 </resources>

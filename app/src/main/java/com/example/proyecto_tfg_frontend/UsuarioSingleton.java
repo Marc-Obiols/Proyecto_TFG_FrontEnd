@@ -11,7 +11,7 @@ public class UsuarioSingleton {
     private String username;
     private String mail;
     private String sexo;
-    private int IMC;
+    private double IMC;
     private int altura;
     private int peso_act;
     private int peso_des;
@@ -78,11 +78,11 @@ public class UsuarioSingleton {
         this.altura = altura;
     }
 
-    public int getIMC() {
+    public double getIMC() {
         return IMC;
     }
 
-    public void setIMC(int IMC) {
+    public void setIMC(double IMC) {
         this.IMC = IMC;
     }
 
