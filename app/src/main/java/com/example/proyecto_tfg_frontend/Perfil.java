@@ -255,7 +255,7 @@ public class Perfil extends Fragment implements Interfaz{
         result.add(String.valueOf((int)(res_min)));
         return result;
     }
-    private String estado_forma(int IMC) {
+    private String estado_forma(double IMC) {
         String estado_forma;
         if (IMC < 18.5) estado_forma = "Delgado";
         else if (IMC >= 18.5 && IMC <= 24.9) estado_forma = "Bueno";

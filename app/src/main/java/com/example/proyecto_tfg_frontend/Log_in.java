@@ -107,8 +107,11 @@ public class Log_in extends AppCompatActivity implements Interfaz {
                 Toast.makeText(Log_in.this,"Bienvenido", Toast.LENGTH_LONG).show();
                 Intent ii = new Intent(getApplicationContext(), Inicio.class);
                 startActivity(ii);
-            } else {
+            } else if (datos.getInt("codigo") == 411) {
                 Toast.makeText(Log_in.this,"Password o username incorrecto", Toast.LENGTH_LONG).show();
+            }
+            else {
+                Toast.makeText(Log_in.this,"No esta validado", Toast.LENGTH_LONG).show();
             }
         } catch (JSONException | ParseException e) {
             e.printStackTrace();

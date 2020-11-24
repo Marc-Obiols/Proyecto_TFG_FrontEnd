@@ -1,88 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="350dp"
-    android:layout_height="200dp"
+    android:layout_height="300dp"
     android:padding="5dp"
     android:layout_gravity="center">
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="166dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:text="Introduce el peso de hoy:"
         android:textSize="15dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"/>
+    <TextView
+        android:id="@+id/ult_reg_pes"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:textSize="15dp"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="10dp"/>
     <TextView
         android:id="@+id/ult_reg"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="16dp"
-        android:text="Introduce el peso de hoy:"
-        app:layout_constraintBottom_toTopOf="@+id/actualizar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.125" />
+        android:layout_height="30dp"
+        android:textSize="15dp"
+        android:text="Introduce la altura:"
+        android:layout_below="@+id/ult_reg_pes"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"/>
+    <TextView
+        android:id="@+id/pes_met"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:textSize="15dp"
+        android:text="Introduce el peso meta:"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@+id/ult_reg"
+        android:layout_marginTop="10dp"/>
 
     <EditText
         android:id="@+id/peso_mod"
-        android:layout_width="75dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
         android:background="@null"
         android:ems="10"
         android:hint="Kg"
         android:inputType="number"
         android:textSize="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="20dp"/>
 
     <EditText
         android:id="@+id/altura"
-        android:layout_width="75dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
         android:background="@null"
         android:hint="cm"
+        android:layout_marginRight="20dp"
         android:textSize="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/peso_mod" />
+        android:layout_below="@+id/peso_mod"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="50dp"/>
+    <EditText
+        android:id="@+id/peso_meta_nuev"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:background="@null"
+        android:hint="Kg"
+        android:layout_marginRight="20dp"
+        android:textSize="15dp"
+        android:layout_below="@+id/altura"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:gravity="center">
     <Button
         android:id="@+id/actualizar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginLeft="64dp"
-        android:layout_marginBottom="16dp"
         android:text="Confirmar"
         android:textSize="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginRight="10dp"/>
 
     <Button
         android:id="@+id/cancelar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:text="Cancelar"
-        android:textSize="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.323"
-        app:layout_constraintStart_toEndOf="@+id/actualizar" />
+        android:textSize="10dp" />
+    </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

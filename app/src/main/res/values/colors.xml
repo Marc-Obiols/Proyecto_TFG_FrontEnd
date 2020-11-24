@@ -16,5 +16,6 @@
     <color name="Pantalla_registro_top">#3399ff</color>
     <color name="Rosa_fuxia">#E1306C</color>
     <color name="Naranja">#F56040</color>
+    <color name="Transparente">#FFFFFF80</color>
 
 </resources>

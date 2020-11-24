@@ -4,41 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Rutinas">
+    tools:context=".Rutinas"
+    android:background="@drawable/gradient">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
         android:id="@+id/lista_rutinas"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:layout_below="@+id/menu_rutinas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:id="@+id/añadir_rutina"
-        android:layout_width="48sp"
-        android:layout_height="48sp"
-        android:layout_below="@+id/lista_rutinas"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/ic_add"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/añadir_rutina"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add"
+            app:backgroundTint="@color/Naranja" />
+    </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/menu_rutinas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_gravity="bottom"
         android:layout_marginBottom="0dp"
-        android:background="@color/colorAccent"
+        android:background="@drawable/gradient_elementos"
         app:itemIconTint="#ffffff"
         app:itemTextColor="#ffffff"
         app:labelVisibilityMode="labeled"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/menu_rutinas" />
 </RelativeLayout>

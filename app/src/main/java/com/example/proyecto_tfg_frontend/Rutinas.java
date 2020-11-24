@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,7 +33,7 @@ public class Rutinas extends AppCompatActivity implements Interfaz {
 
     private BottomNavigationView menu;
     private ArrayList<DatosRutina> listDatosRutinas;
-    private CircleImageView crear_rutina;
+    private FloatingActionButton crear_rutina;
     private Dialog pantalla_crear;
     private int llamada;
     private RecyclerView recycler;
@@ -101,12 +103,14 @@ public class Rutinas extends AppCompatActivity implements Interfaz {
         listDatosRutinas = new ArrayList<>();
         recycler = (RecyclerView) findViewById(R.id.lista_rutinas);
         recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
+        SeparatorDecoration decoration = new SeparatorDecoration(this, R.color.Transparente, 5f);
+        recycler.addItemDecoration(decoration);
 
         llamada = 1;
         Connection con = new Connection(this);
         con.execute("http://169.254.145.10:3000/rutina/"+UsuarioSingleton.getInstance().getId(), "GET", null);
 
-        crear_rutina = (CircleImageView) findViewById(R.id.añadir_rutina);
+        crear_rutina = (FloatingActionButton) findViewById(R.id.añadir_rutina);
         pantalla_crear = new Dialog(this);
         crear_rutina.setOnClickListener(new View.OnClickListener() {
             @Override
