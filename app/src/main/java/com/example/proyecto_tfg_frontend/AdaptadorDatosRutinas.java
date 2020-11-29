@@ -68,6 +68,7 @@ public class AdaptadorDatosRutinas extends RecyclerView.Adapter<AdaptadorDatosRu
 
     public class ViewHolderDatosRutinas extends RecyclerView.ViewHolder {
         TextView nombre_rutina;
+        TextView info_ad;
         CircleImageView modificar;
         CircleImageView eliminar;
         int posicion;
@@ -77,6 +78,7 @@ public class AdaptadorDatosRutinas extends RecyclerView.Adapter<AdaptadorDatosRu
             nombre_rutina = itemView.findViewById(R.id.nombre_rutina);
             modificar = itemView.findViewById(R.id.modficar_rut);
             eliminar = itemView.findViewById(R.id.eliminar_rut);
+            info_ad = itemView.findViewById(R.id.info_adicional);
             if (tipo == 2 || tipo == 3) {
                 modificar.setVisibility(View.INVISIBLE);
                 eliminar.setVisibility(View.INVISIBLE);
@@ -141,7 +143,7 @@ public class AdaptadorDatosRutinas extends RecyclerView.Adapter<AdaptadorDatosRu
                                 llamada = 4;
                                 pos = posicion;
                                 Connection con = new Connection((Interfaz) c);
-                                con.execute("http://169.254.145.10:3000/rutina/modificar/" + listDatos.get(posicion).getId(), "POST", req.toString());
+                                con.execute("http://192.168.0.14:3000/rutina/modificar/" + listDatos.get(posicion).getId(), "POST", req.toString());
                                 pantalla_eliminar.dismiss();
                             }
                         }
@@ -179,7 +181,7 @@ public class AdaptadorDatosRutinas extends RecyclerView.Adapter<AdaptadorDatosRu
                             }
                             llamada = 3;
                             Connection con = new Connection((Interfaz) c);
-                            con.execute("http://169.254.145.10:3000/rutina/eliminar/" + listDatos.get(posicion).getId(), "POST", req.toString());
+                            con.execute("http://192.168.0.14:3000/rutina/eliminar/" + listDatos.get(posicion).getId(), "POST", req.toString());
                             pantalla_eliminar.dismiss();
                         }
                     });
@@ -197,6 +199,8 @@ public class AdaptadorDatosRutinas extends RecyclerView.Adapter<AdaptadorDatosRu
 
         public void asignarDatos(DatosRutina dato, int position) {
             nombre_rutina.setText(dato.getNombre());
+            info_ad.setText("Dificultad: "+ dato.getDificultad());
+            if (tipo == 3) info_ad.setText("Dificultad: "+ dato.getDificultad() + " | Creado por: " + dato.getProp());
             posicion = position;
         }
     }

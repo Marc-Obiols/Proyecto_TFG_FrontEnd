@@ -112,7 +112,7 @@ public class Ejercicios extends AppCompatActivity implements Interfaz{
                         llamada = 2;
                         System.out.println(req.toString());
                         Connection con = new Connection(Ejercicios.this);
-                        con.execute("http://169.254.145.10:3000/ejercicio/filtrados", "POST", req.toString());
+                        con.execute("http://192.168.0.14:3000/ejercicio/filtrados", "POST", req.toString());
                         pantalla_filtrar.dismiss();
                     }
                 });
@@ -142,7 +142,7 @@ public class Ejercicios extends AppCompatActivity implements Interfaz{
         listDatosEjercicio = new ArrayList<String>();
         llamada = 1;
         Connection con = new Connection(this);
-        con.execute("http://169.254.145.10:3000/ejercicio", "GET", null);
+        con.execute("http://192.168.0.14:3000/ejercicio", "GET", null);
     }
 
     @Override

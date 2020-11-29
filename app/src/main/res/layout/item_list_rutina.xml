@@ -5,25 +5,39 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
-    app:cardCornerRadius="5dp"
     app:cardElevation="10dp"
     android:foreground="?selectableItemBackground">
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/custom_items_rec">
+        android:layout_height="50dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toLeftOf="@+id/l1">
             <TextView
                 android:id="@+id/nombre_rutina"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="HOLA"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="5dp"
                 android:gravity="center_vertical"
-                android:layout_toLeftOf="@+id/l1"
                 android:textStyle="bold"
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
+            <TextView
+                android:id="@+id/info_adicional"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:text="15 seg"
+                android:gravity="center_vertical"
+                android:textColor="@color/black" />
+        </LinearLayout>
             <LinearLayout
                 android:id="@+id/l1"
                 android:layout_width="wrap_content"
@@ -32,17 +46,15 @@
                 android:layout_alignParentRight="true">
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/modficar_rut"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:src="@drawable/ic_mod"
                     android:layout_toLeftOf="@id/eliminar_rut"/>
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/eliminar_rut"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:src="@drawable/ic_remove" />
             </LinearLayout>
 

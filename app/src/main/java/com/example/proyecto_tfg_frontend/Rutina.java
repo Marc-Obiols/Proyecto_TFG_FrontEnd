@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,7 +33,7 @@ public class Rutina extends AppCompatActivity implements Interfaz {
     private RecyclerView recycler, recyclerEjercicios;
     private AdaptadorDatosEjercicioRutina adaptador;
     private AdaptadorDatosEjercicios adaptadorEjercicios;
-    private CircleImageView añadir_ejercicio, empezar_rutina;
+    private FloatingActionButton añadir_ejercicio, empezar_rutina;
     private ArrayList<Pair<String,Integer>> listDatosEjercicio;
     private ArrayList<String> listDatosEjercicioSeleccionar;
     private Dialog pantalla_añadir_ejercicio;
@@ -42,6 +44,7 @@ public class Rutina extends AppCompatActivity implements Interfaz {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rutina);
+        System.out.println("ME ESTAS INICIANDO");
         id_rutina = getIntent().getStringExtra("rutina");
         tipo = getIntent().getIntExtra("tipo", 1);
 
@@ -54,8 +57,10 @@ public class Rutina extends AppCompatActivity implements Interfaz {
 
         recycler = (RecyclerView) findViewById(R.id.lista_ejercicios_rutina);
         recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
+        SeparatorDecoration decoration = new SeparatorDecoration(this, R.color.Transparente, 5f);
+        recycler.addItemDecoration(decoration);
 
-        empezar_rutina = (CircleImageView) findViewById(R.id.empezar_rutina);
+        empezar_rutina = (FloatingActionButton) findViewById(R.id.empezar_rutina);
         empezar_rutina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,7 +80,7 @@ public class Rutina extends AppCompatActivity implements Interfaz {
             }
         });
 
-        añadir_ejercicio = (CircleImageView) findViewById(R.id.añadir_ejercicio_rutina);
+        añadir_ejercicio = (FloatingActionButton) findViewById(R.id.añadir_ejercicio_rutina);
         if (tipo == 1) copiar.setVisibility(View.INVISIBLE);
         else if (tipo == 2) {
             copiar.setVisibility(View.INVISIBLE);
@@ -96,7 +101,7 @@ public class Rutina extends AppCompatActivity implements Interfaz {
                     }
                     llamada = 1;
                     Connection con = new Connection(Rutina.this);
-                    con.execute("http://169.254.145.10:3000/rutina/copiar/"+id_rutina, "POST", req.toString());
+                    con.execute("http://192.168.0.14:3000/rutina/copiar/"+id_rutina, "POST", req.toString());
                     Toast.makeText(Rutina.this, "Se ha copiado la rutina", Toast.LENGTH_LONG).show();
                 }
             });
@@ -114,7 +119,7 @@ public class Rutina extends AppCompatActivity implements Interfaz {
                 recyclerEjercicios.setLayoutManager(new LinearLayoutManager(Rutina.this, LinearLayoutManager.VERTICAL,false));
                 llamada = 2;
                 Connection con = new Connection(Rutina.this);
-                con.execute("http://169.254.145.10:3000/ejercicio", "GET", null);
+                con.execute("http://192.168.0.14:3000/ejercicio", "GET", null);
 
                 add.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -135,7 +140,7 @@ public class Rutina extends AppCompatActivity implements Interfaz {
                             }
                             llamada = 3;
                             Connection con = new Connection(Rutina.this);
-                            con.execute("http://169.254.145.10:3000/rutina/addEjercicio/" + id_rutina, "POST", req.toString());
+                            con.execute("http://192.168.0.14:3000/rutina/addEjercicio/" + id_rutina, "POST", req.toString());
                             pantalla_añadir_ejercicio.dismiss();
                         }
                     }
@@ -147,7 +152,7 @@ public class Rutina extends AppCompatActivity implements Interfaz {
 
         llamada = 1;
         Connection con = new Connection(this);
-        con.execute("http://169.254.145.10:3000/rutina/datos/" + id_rutina, "GET", null);
+        con.execute("http://192.168.0.14:3000/rutina/datos/" + id_rutina, "GET", null);
     }
 
     @Override
@@ -158,15 +163,16 @@ public class Rutina extends AppCompatActivity implements Interfaz {
                     listDatosEjercicio = new ArrayList<>();
                     double d = datos.getInt("tiempo_total");
                     d = d/60;
+                    d = Math.floor(d * 100) / 100;
                     String min_s = String.valueOf(d);
-                    tiempo.setText("Tiempo: " + min_s + " min");
+                    tiempo.setText(min_s + " min");
                     tiempo_descanso = datos.getInt("tiempo_descanso");
                     tiempo_total = datos.getInt("tiempo_total");
-                    tiempo_desc.setText("Tiempo Descanso: " + datos.getString("tiempo_descanso"));
+                    tiempo_desc.setText(datos.getString("tiempo_descanso") + " seg");
                     JSONArray aux1 = datos.getJSONArray("ejercicios");
                     JSONArray aux2 = datos.getJSONArray("tiempos");
                     if (aux1.length() == 0) {
-                        Kcal.setText("Gasto calórico: 0");
+                        Kcal.setText("0");
                         Toast.makeText(Rutina.this, "No hay ejercicios para esta rutina", Toast.LENGTH_LONG).show();
                     } else {
                         int tiempo = 0;
@@ -176,7 +182,7 @@ public class Rutina extends AppCompatActivity implements Interfaz {
                         }
                         double gasto = gasto_kcal(tiempo);
                         String s=String.valueOf(gasto);
-                        Kcal.setText("Gasto calórico: " + s);
+                        Kcal.setText(s);
                         adaptador = new AdaptadorDatosEjercicioRutina(listDatosEjercicio, this, id_rutina, tipo);
                         recycler.setAdapter(adaptador);
                     }
@@ -205,8 +211,9 @@ public class Rutina extends AppCompatActivity implements Interfaz {
                     System.out.println("AÑADIENDO EJERCICIO");
                     double d = datos.getInt("tiempo_total");
                     d = d/60;
+                    d = Math.floor(d * 100) / 100;
                     String min_s = String.valueOf(d);
-                    tiempo.setText("Tiempo: " + min_s + " min");
+                    tiempo.setText(min_s + " min");
                     tiempo_total = datos.getInt("tiempo_total");
                     JSONArray aux1 = datos.getJSONArray("ejercicios");
                     JSONArray aux2 = datos.getJSONArray("tiempos");
@@ -217,7 +224,7 @@ public class Rutina extends AppCompatActivity implements Interfaz {
                     }
                     double gasto = gasto_kcal(tiempo);
                     String s = String.valueOf(gasto);
-                    Kcal.setText("Gasto calórico: " + s);
+                    Kcal.setText(s);
                     listDatosEjercicio.add(new Pair<>(aux1.getString(aux1.length()-1), aux2.getInt(aux2.length()-1)));
                     adaptador = new AdaptadorDatosEjercicioRutina(listDatosEjercicio, this, id_rutina, tipo);
                     recycler.setAdapter(adaptador);
@@ -226,15 +233,16 @@ public class Rutina extends AppCompatActivity implements Interfaz {
                     listDatosEjercicio = new ArrayList<>();
                     double d = datos.getInt("tiempo_total");
                     d = d/60;
+                    d = Math.floor(d * 100) / 100;
                     String min_s = String.valueOf(d);
-                    tiempo.setText("Tiempo: " + min_s + " min");
+                    tiempo.setText( min_s + " min");
                     tiempo_descanso = datos.getInt("tiempo_descanso");
                     tiempo_total = datos.getInt("tiempo_total");
-                    tiempo_desc.setText("Tiempo Descanso: " + datos.getString("tiempo_descanso"));
+                    tiempo_desc.setText(datos.getString("tiempo_descanso") + " seg");
                     JSONArray aux1 = datos.getJSONArray("ejercicios");
                     JSONArray aux2 = datos.getJSONArray("tiempos");
                     if (aux1.length() == 0) {
-                        Kcal.setText("Gasto calórico: 0");
+                        Kcal.setText("0");
                         Toast.makeText(Rutina.this, "No hay ejercicios para esta rutina", Toast.LENGTH_LONG).show();
                     } else {
                         int tiempo = 0;
@@ -244,7 +252,7 @@ public class Rutina extends AppCompatActivity implements Interfaz {
                         }
                         double gasto = gasto_kcal(tiempo);
                         String s=String.valueOf(gasto);
-                        Kcal.setText("Gasto calórico: " + s);
+                        Kcal.setText(s);
                     }
                     adaptador = new AdaptadorDatosEjercicioRutina(listDatosEjercicio, this, id_rutina, tipo);
                     recycler.setAdapter(adaptador);
@@ -253,15 +261,16 @@ public class Rutina extends AppCompatActivity implements Interfaz {
                     listDatosEjercicio = new ArrayList<>();
                     double d = datos.getInt("tiempo_total");
                     d = d/60;
+                    d = Math.floor(d * 100) / 100;
                     String min_s = String.valueOf(d);
-                    tiempo.setText("Tiempo: " + min_s + " min");
+                    tiempo.setText(min_s + " min");
                     tiempo_descanso = datos.getInt("tiempo_descanso");
                     tiempo_total = datos.getInt("tiempo_total");
-                    tiempo_desc.setText("Tiempo Descanso: " + datos.getString("tiempo_descanso"));
+                    tiempo_desc.setText(datos.getString("tiempo_descanso") + " seg");
                     JSONArray aux1 = datos.getJSONArray("ejercicios");
                     JSONArray aux2 = datos.getJSONArray("tiempos");
                     if (aux1.length() == 0) {
-                        Kcal.setText("Gasto calórico: 0");
+                        Kcal.setText("0");
                         Toast.makeText(Rutina.this, "No hay ejercicios para esta rutina", Toast.LENGTH_LONG).show();
                     } else {
                         int tiempo = 0;
@@ -271,7 +280,7 @@ public class Rutina extends AppCompatActivity implements Interfaz {
                         }
                         double gasto = gasto_kcal(tiempo);
                         String s=String.valueOf(gasto);
-                        Kcal.setText("Gasto calórico: " + s);
+                        Kcal.setText(s);
                     }
                     adaptador = new AdaptadorDatosEjercicioRutina(listDatosEjercicio, this, id_rutina, tipo);
                     recycler.setAdapter(adaptador);
@@ -286,13 +295,34 @@ public class Rutina extends AppCompatActivity implements Interfaz {
         }
     }
 
+    @Override
+    protected void onPause() {
+        System.out.println("EN PAUSA");
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        System.out.println("EN STOP");
+        super.onStop();
+    }
+
+    @Override
+    protected void onRestart() {
+        System.out.println("ME RECUPERO");
+        super.onRestart();
+    }
+
+    @Override
+    protected void onDestroy() {
+        System.out.println("ME DESTRUYO");
+        super.onDestroy();
+    }
+
     private double gasto_kcal(int tiempo) {
         double segundos = tiempo;
-        System.out.println(tiempo);
         double minutos = segundos/60;
         double value = 0.081*UsuarioSingleton.getInstance().getPeso_act()*minutos;
-        System.out.println(UsuarioSingleton.getInstance().getPeso_act());
-        System.out.println(value);
         return  Math.floor(value * 100) / 100;
     }
 }

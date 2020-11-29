@@ -56,7 +56,7 @@ public class Alimentacion_concreta extends AppCompatActivity implements Interfaz
             e.printStackTrace();
         }
         Connection con = new Connection(this);
-        con.execute("http://169.254.145.10:3000/alimentacion/concreta/" + UsuarioSingleton.getInstance().getId(),"POST", req.toString());
+        con.execute("http://192.168.0.14:3000/alimentacion/concreta/" + UsuarioSingleton.getInstance().getId(),"POST", req.toString());
 
         grafico.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,10 +67,10 @@ public class Alimentacion_concreta extends AppCompatActivity implements Interfaz
                 graf = (PieChart) pantalla.findViewById(R.id.piechart);
 
                 ArrayList<PieEntry> visitors = new ArrayList<>();
-                visitors.add(new PieEntry(Integer.parseInt(proteinas.getText().toString()), "Proteinas"));
-                visitors.add(new PieEntry(Integer.parseInt(fibra.getText().toString()), "Fibra"));
-                visitors.add(new PieEntry(Integer.parseInt(carbohidratos.getText().toString()), "Carbohidratos"));
-                visitors.add(new PieEntry(Integer.parseInt(grasas.getText().toString()), "Grasas"));
+                visitors.add(new PieEntry((float) Double.parseDouble(proteinas.getText().toString()), "Proteinas"));
+                visitors.add(new PieEntry((float) Double.parseDouble(fibra.getText().toString()), "Fibra"));
+                visitors.add(new PieEntry((float) Double.parseDouble(carbohidratos.getText().toString()), "Carbohidratos"));
+                visitors.add(new PieEntry((float) Double.parseDouble(grasas.getText().toString()), "Grasas"));
 
                 PieDataSet pieDataSet = new PieDataSet(visitors, "Alimentación");
                 pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);

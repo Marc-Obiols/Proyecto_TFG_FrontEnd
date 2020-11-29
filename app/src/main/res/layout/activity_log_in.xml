@@ -8,23 +8,24 @@
     android:layout_height="match_parent"
     tools:context=".Log_in">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="120dp"
-        android:layout_height="150dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="53dp"
-        android:layout_marginEnd="153dp"
-        android:layout_marginRight="153dp"
-        android:src="@drawable/logo" />
+    <LinearLayout
+        android:id="@+id/l1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="160dp"
+            android:layout_height="150dp"
+            android:src="@drawable/ic_corazon__1_" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@+id/imageView"
+        android:layout_below="@+id/l1"
         android:layout_marginTop="100dp"
         android:background="@drawable/custom_edittext"
         android:layout_alignParentLeft="true"

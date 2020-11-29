@@ -121,7 +121,7 @@ public class contador_calorias extends AppCompatActivity implements Interfaz{
 
         llamada = 3;
         Connection con = new Connection(contador_calorias.this);
-        con.execute("http://169.254.145.10:3000/plan/"+UsuarioSingleton.getInstance().getId(),"GET",null);
+        con.execute("http://192.168.0.14:3000/plan/"+UsuarioSingleton.getInstance().getId(),"GET",null);
 
 
         ing = (Spinner) findViewById(R.id.ingrediente);
@@ -240,7 +240,7 @@ public class contador_calorias extends AppCompatActivity implements Interfaz{
                                         }
                                         llamada = 2;
                                         Connection con = new Connection(contador_calorias.this);
-                                        con.execute("http://169.254.145.10:3000/alimentacion/addAlimento/"+UsuarioSingleton.getInstance().getId(),"POST",req.toString());
+                                        con.execute("http://192.168.0.14:3000/alimentacion/addAlimento/"+UsuarioSingleton.getInstance().getId(),"POST",req.toString());
                                         pantalla.dismiss();
                                     }
                                 });
@@ -285,7 +285,7 @@ public class contador_calorias extends AppCompatActivity implements Interfaz{
 
                 llamada = 2;
                 Connection con2 = new Connection(contador_calorias.this);
-                con2.execute("http://169.254.145.10:3000/alimentacion/dia/"+UsuarioSingleton.getInstance().getId(),"GET",null);
+                con2.execute("http://192.168.0.14:3000/alimentacion/dia/"+UsuarioSingleton.getInstance().getId(),"GET",null);
             }
 
             else if (adaptadorDatosAlimentosSeleccionados.getLlamada() == 2) {

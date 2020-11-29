@@ -101,7 +101,7 @@ public class registro extends AppCompatActivity implements Interfaz {
         String aux2 = peso_actual.getText().toString();
         String aux3 = peso_deseado.getText().toString();
         String fecha = fecha_nacimiento.getText().toString();
-        if (user.length() == 0 || pass.length() == 0 || email.length() == 0 || fecha.length() == 16 || aux1 == "" || aux2 == "" || aux3 == "" || (!hombre.isChecked() && mujer.isChecked())) {
+        if (user.length() == 0 || pass.length() == 0 || email.length() == 0 || fecha.length() == 16 || aux1 == "" || aux2 == "" || aux3 == "" || (!hombre.isChecked() && !mujer.isChecked())) {
             Toast.makeText(registro.this,"Rellene los parametros de forma correcta", Toast.LENGTH_LONG).show();
         }
         else {
@@ -126,7 +126,7 @@ public class registro extends AppCompatActivity implements Interfaz {
                     e.printStackTrace();
                 }
                 Connection con = new Connection(this);
-                con.execute("http://169.254.145.10:3000/users/register/", "POST", req.toString());
+                con.execute("http://192.168.0.14:3000/users/register/", "POST", req.toString());
             }
         }
     }

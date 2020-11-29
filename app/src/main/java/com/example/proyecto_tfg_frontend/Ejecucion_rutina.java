@@ -1,16 +1,21 @@
 package com.example.proyecto_tfg_frontend;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
@@ -32,10 +37,28 @@ public class Ejecucion_rutina extends AppCompatActivity {
     private ArrayList<Integer> listTEjercicios;
     private ImageView imagen_ejercicio;
 
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ejecucion_rutina);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         pausa = false;
         System.out.println("HOLA EMPIEZO");
@@ -79,7 +102,7 @@ public class Ejecucion_rutina extends AppCompatActivity {
         tiempo_total_aux = tiempo_total;
         descanso = false;
         aux = tiempo_total * 1000;
-        Picasso.get().load("http://169.254.145.10:3000/ejercicio/image/"+nombreToUrl(listNEjercicios.get(0))).into(imagen_ejercicio);
+        Picasso.get().load("http://192.168.0.14:3000/ejercicio/image/"+nombreToUrl(listNEjercicios.get(0))).into(imagen_ejercicio);
         empezar();
     }
 
@@ -117,7 +140,7 @@ public class Ejecucion_rutina extends AppCompatActivity {
                         contador_ejercicio.setVisibility(View.VISIBLE);
 
                         bucle += 1;
-                        Picasso.get().load("http://169.254.145.10:3000/ejercicio/image/" + nombreToUrl(listNEjercicios.get(bucle))).into(imagen_ejercicio);
+                        Picasso.get().load("http://192.168.0.14:3000/ejercicio/image/" + nombreToUrl(listNEjercicios.get(bucle))).into(imagen_ejercicio);
                         contador_ejercicio.setProgress(0);
                         cuenta_atras_ejercicio.setText(Integer.toString(listTEjercicios.get(bucle)));
                         tiempo_total_aux -= tiempo_descanso;

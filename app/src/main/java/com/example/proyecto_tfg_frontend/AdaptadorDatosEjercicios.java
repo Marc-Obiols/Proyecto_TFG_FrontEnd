@@ -76,7 +76,7 @@ public class AdaptadorDatosEjercicios extends RecyclerView.Adapter<AdaptadorDato
 
         public void asignarDatos(String dato) {
             nombre_ejercicio.setText(dato);
-            Picasso.get().load("http://169.254.145.10:3000/ejercicio/image/"+nombreToUrl(dato)).into(foto_ejercicio);
+            Picasso.get().load("http://192.168.0.14:3000/ejercicio/image/"+nombreToUrl(dato)).into(foto_ejercicio);
         }
     }
 }

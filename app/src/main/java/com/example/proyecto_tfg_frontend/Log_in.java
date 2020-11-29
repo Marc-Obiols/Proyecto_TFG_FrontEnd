@@ -49,9 +49,8 @@ public class Log_in extends AppCompatActivity implements Interfaz {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         Connection con = new Connection(this);
-        con.execute("http://169.254.145.10:3000/users/login/", "POST", req.toString());
+        con.execute("http://192.168.0.14:3000/users/login/", "POST", req.toString());
 
     }
 

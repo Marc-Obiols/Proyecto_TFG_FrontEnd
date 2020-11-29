@@ -2,7 +2,10 @@ package com.example.proyecto_tfg_frontend;
 
 public class DatosRutina {
 
-    private String nombre, id, dificultad;
+    private String nombre;
+    private String id;
+    private String dificultad;
+    private String prop;
     private int tiempo_desc;
     private boolean publica;
 
@@ -12,6 +15,7 @@ public class DatosRutina {
         this.dificultad = dificultad;
         this.tiempo_desc = tiempo_desc;
         this.publica = publica;
+        this.prop = "";
     }
 
     public String getNombre() {
@@ -32,5 +36,13 @@ public class DatosRutina {
 
     public boolean isPublica() {
         return publica;
+    }
+
+    public String getProp() {
+        return prop;
+    }
+
+    public void setProp(String prop) {
+        this.prop = prop;
     }
 }

@@ -32,7 +32,7 @@ public class historial_alimentacion extends Fragment implements Interfaz{
 
         list = new ArrayList<>();
         Connection con = new Connection(this);
-        con.execute("http://169.254.145.10:3000/alimentacion/historial/" + UsuarioSingleton.getInstance().getId(), "GET", null);
+        con.execute("http://192.168.0.14:3000/alimentacion/historial/" + UsuarioSingleton.getInstance().getId(), "GET", null);
         return view;
     }
 

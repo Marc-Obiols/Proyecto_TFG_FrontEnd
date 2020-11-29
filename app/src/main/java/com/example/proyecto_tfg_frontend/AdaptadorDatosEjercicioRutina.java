@@ -155,7 +155,7 @@ public class AdaptadorDatosEjercicioRutina extends RecyclerView.Adapter <Adaptad
                             }
                             llamada = 4;
                             Connection con = new Connection((Interfaz) c);
-                            con.execute("http://169.254.145.10:3000/rutina/modEjercicio/" + id_rutina, "POST", req.toString());
+                            con.execute("http://192.168.0.14:3000/rutina/modEjercicio/" + id_rutina, "POST", req.toString());
                             pantalla.dismiss();
                         }
                     });
@@ -192,7 +192,7 @@ public class AdaptadorDatosEjercicioRutina extends RecyclerView.Adapter <Adaptad
                             }
                             llamada = 3;
                             Connection con = new Connection((Interfaz) c);
-                            con.execute("http://169.254.145.10:3000/rutina/eliminarEjercicio/" + id_rutina, "POST", req.toString());
+                            con.execute("http://192.168.0.14:3000/rutina/eliminarEjercicio/" + id_rutina, "POST", req.toString());
                             pantalla.dismiss();
                         }
                     });
@@ -213,7 +213,7 @@ public class AdaptadorDatosEjercicioRutina extends RecyclerView.Adapter <Adaptad
             System.out.println(pos);
             nombre_ejercicio.setText(dato);
             tiempo_ejercicio.setText(tiempo.toString() + " seg");
-            Picasso.get().load("http://169.254.145.10:3000/ejercicio/image/" + nombreToUrl(dato)).into(foto_ejercicio);
+            Picasso.get().load("http://192.168.0.14:3000/ejercicio/image/" + nombreToUrl(dato)).into(foto_ejercicio);
         }
 
         private String nombreToUrl(String nombre) {

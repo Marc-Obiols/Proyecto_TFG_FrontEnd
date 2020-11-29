@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout
+    tools:context=".datos_user"
+    android:background="@drawable/gradient"
+    android:paddingRight="10dp"
+    android:paddingLeft="10dp"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginTop="140dp"
+        app:cardElevation="10dp"
+        android:id="@+id/card">
+
+        <GridLayout
+            android:background="@drawable/gradient_elementos"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/idGrid"
+            android:rowCount="4"
+            android:columnCount="2">
+
+            <LinearLayout
+                android:background="@drawable/custom_gridlayout"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1">
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:layout_width="match_parent"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/white"
+                    android:text="Edad"/>
+
+    <EditText android:background="@null" android:layout_height="30dp" android:layout_width="match_parent" android:id="@+id/edad" android:textStyle="bold" android:textSize="20dp" android:gravity="center_horizontal" android:textColor="@color/white" android:inputType="number"/>
+
+</LinearLayout>
+
+
+    <LinearLayout android:background="@drawable/custom_gridlayout" android:layout_height="wrap_content" android:layout_width="wrap_content" android:orientation="vertical" android:layout_rowWeight="1" android:layout_columnWeight="1">
+
+    <TextView android:layout_height="30dp" android:layout_width="match_parent" android:textStyle="bold" android:textSize="20dp" android:gravity="center_horizontal" android:textColor="@color/white" android:text="Peso meta (Kg)"/>
+
+    <EditText android:background="@null" android:layout_height="30dp" android:layout_width="match_parent" android:id="@+id/peso_meta" android:textStyle="bold" android:textSize="20dp" android:gravity="center_horizontal" android:textColor="@color/white" android:inputType="number"/>
+
+</LinearLayout>
+
+
+    <LinearLayout android:background="@drawable/custom_gridlayout" android:layout_height="wrap_content" android:layout_width="wrap_content" android:orientation="vertical" android:layout_rowWeight="1" android:layout_columnWeight="1">
+
+    <TextView android:layout_height="30dp" android:layout_width="match_parent" android:textStyle="bold" android:textSize="20dp" android:gravity="center_horizontal" android:textColor="@color/white" android:text="Altura (cm)"/>
+
+    <EditText android:background="@null" android:layout_height="30dp" android:layout_width="match_parent" android:id="@+id/altura" android:textStyle="bold" android:textSize="20dp" android:gravity="center_horizontal" android:textColor="@color/white" android:inputType="number"/>
+
+</LinearLayout>
+
+
+    <LinearLayout android:background="@drawable/custom_gridlayout" android:layout_height="wrap_content" android:layout_width="wrap_content" android:orientation="vertical" android:layout_rowWeight="1" android:layout_columnWeight="1">
+
+    <TextView android:layout_height="30dp" android:layout_width="match_parent" android:textStyle="bold" android:textSize="20dp" android:gravity="center_horizontal" android:textColor="@color/white" android:text="Peso (Kg)"/>
+
+    <EditText android:background="@null" android:layout_height="30dp" android:layout_width="match_parent" android:id="@+id/peso" android:textStyle="bold" android:textSize="20dp" android:gravity="center_horizontal" android:textColor="@color/white" android:inputType="number"/>
+
+</LinearLayout>
+
+
+    -<LinearLayout android:background="@drawable/custom_gridlayout" android:layout_height="wrap_content" android:layout_width="wrap_content" android:orientation="vertical" android:layout_rowWeight="1" android:layout_columnWeight="1">
+
+    <TextView android:layout_height="30dp" android:layout_width="match_parent" android:textStyle="bold" android:textSize="20dp" android:gravity="center_horizontal" android:textColor="@color/white" android:text="IMC"/>
+
+    <EditText android:background="@null" android:layout_height="30dp" android:layout_width="match_parent" android:id="@+id/IMC" android:textStyle="bold" android:textSize="20dp" android:gravity="center_horizontal" android:textColor="@color/white" android:inputType="number"/>
+
+</LinearLayout>
+
+
+    <LinearLayout android:background="@drawable/custom_gridlayout" android:layout_height="wrap_content" android:layout_width="wrap_content" android:orientation="vertical" android:layout_rowWeight="1" android:layout_columnWeight="1">
+
+    <TextView android:layout_height="30dp" android:layout_width="match_parent" android:textStyle="bold" android:textSize="20dp" android:gravity="center_horizontal" android:textColor="@color/white" android:text="Peso Ideal (Kg)"/>
+
+    <EditText android:background="@null" android:layout_height="30dp" android:layout_width="match_parent" android:id="@+id/peso_ideal" android:textStyle="bold" android:textSize="20dp" android:gravity="center_horizontal" android:textColor="@color/white" android:inputType="number"/>
+
+</LinearLayout>
+
+
+    -<LinearLayout android:background="@drawable/custom_gridlayout" android:layout_height="wrap_content" android:layout_width="wrap_content" android:orientation="vertical" android:layout_rowWeight="1" android:layout_columnWeight="1">
+
+    <TextView android:layout_height="30dp" android:layout_width="match_parent" android:textStyle="bold" android:textSize="20dp" android:gravity="center_horizontal" android:textColor="@color/white" android:text="Peso máx (Kg)"/>
+
+    <EditText android:background="@null" android:layout_height="30dp" android:layout_width="match_parent" android:id="@+id/peso_max" android:textStyle="bold" android:textSize="20dp" android:gravity="center_horizontal" android:textColor="@color/white" android:inputType="number"/>
+
+</LinearLayout>
+
+
+    -<LinearLayout android:background="@drawable/custom_gridlayout" android:layout_height="wrap_content" android:layout_width="wrap_content" android:orientation="vertical" android:layout_rowWeight="1" android:layout_columnWeight="1">
+
+    <TextView android:layout_height="30dp" android:layout_width="match_parent" android:textStyle="bold" android:textSize="20dp" android:gravity="center_horizontal" android:textColor="@color/white" android:text="Peso min (Kg)"/>
+
+    <EditText android:background="@null" android:layout_height="30dp" android:layout_width="match_parent" android:id="@+id/peso_min" android:textStyle="bold" android:textSize="20dp" android:gravity="center_horizontal" android:textColor="@color/white" android:inputType="number"/>
+
+</LinearLayout>
+
+</GridLayout>
+
+</androidx.cardview.widget.CardView>
+
+
+    -<LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:layout_marginTop="20dp" android:id="@+id/l1" android:layout_below="@+id/card" android:layout_alignParentLeft="true">
+
+    <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:textStyle="bold" android:textSize="20dp" android:textColor="@color/white" android:text="Estado físico:"/>
+
+    <TextView android:layout_height="match_parent" android:layout_width="wrap_content" android:id="@+id/estado_forma" android:textStyle="bold" android:textSize="20dp" android:textColor="@color/white" android:text="Bueno" android:layout_marginLeft="5dp"/>
+
+</LinearLayout>
+
+    <View android:background="@color/white" android:layout_height="2dp" android:layout_width="match_parent" android:layout_below="@+id/l1"/>
+
+
+    <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="horizontal" android:gravity="center" android:layout_alignParentLeft="true" android:layout_marginBottom="60dp" android:layout_alignParentBottom="true" android:layout_alignParentStart="true">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/Editar"
+        android:src="@drawable/ic_peso"
+        app:backgroundTint="@color/Rosa_fuxia"
+        android:layout_marginRight="10dp"/>
+
+</LinearLayout>
+
+</RelativeLayout>

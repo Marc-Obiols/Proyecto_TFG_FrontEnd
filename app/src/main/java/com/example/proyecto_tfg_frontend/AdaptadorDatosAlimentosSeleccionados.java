@@ -90,7 +90,7 @@ public class AdaptadorDatosAlimentosSeleccionados extends RecyclerView.Adapter<A
                             }
                             llamada = 2;
                             Connection con = new Connection((Interfaz) c);
-                            con.execute("http://169.254.145.10:3000/alimentacion/removeAlimento", "POST", req.toString());
+                            con.execute("http://192.168.0.14:3000/alimentacion/removeAlimento", "POST", req.toString());
                             pantalla.dismiss();
                         }
                     });

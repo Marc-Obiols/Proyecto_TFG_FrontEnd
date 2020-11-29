@@ -107,10 +107,10 @@ public class Perfil extends Fragment implements Interfaz{
         peso_max.setText(valores.get(0));
         peso_min.setText(valores.get(1));
         est_forma.setText(estado_forma(UsuarioSingleton.getInstance().getIMC()));
-        Picasso.get().load("http://169.254.145.10:3000/users/"+UsuarioSingleton.getInstance().getId()+"/image").into(imagen_perfil);
+        Picasso.get().load("http://192.168.0.14:3000/users/"+UsuarioSingleton.getInstance().getId()+"/image").into(imagen_perfil);
         llamada = 2;
         Connection con = new Connection(this);
-        con.execute("http://169.254.145.10:3000/plan/" + UsuarioSingleton.getInstance().getId(), "GET", null);
+        con.execute("http://192.168.0.14:3000/plan/" + UsuarioSingleton.getInstance().getId(), "GET", null);
 
         buttonModificar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,7 +141,7 @@ public class Perfil extends Fragment implements Interfaz{
                         llamada = 1;
                         System.out.println(req.toString());
                         Connection con = new Connection(Perfil.this);
-                        con.execute("http://169.254.145.10:3000/users/registrarPes/" + UsuarioSingleton.getInstance().getId(), "POST", req.toString());
+                        con.execute("http://192.168.0.14:3000/users/registrarPes/" + UsuarioSingleton.getInstance().getId(), "POST", req.toString());
                         registro_peso.dismiss();
                     }
                 });
@@ -169,7 +169,7 @@ public class Perfil extends Fragment implements Interfaz{
                 llamada = 3;
                 System.out.println(req.toString());
                 Connection con = new Connection(Perfil.this);
-                con.execute("http://169.254.145.10:3000/users/modificar/" + UsuarioSingleton.getInstance().getId(), "POST", req.toString());
+                con.execute("http://192.168.0.14:3000/users/modificar/" + UsuarioSingleton.getInstance().getId(), "POST", req.toString());
             }
         });
 
@@ -220,7 +220,7 @@ public class Perfil extends Fragment implements Interfaz{
                     peso_meta.setText(datos.getString("peso_deseado"));
                     llamada = 2;
                     Connection con = new Connection(this);
-                    con.execute("http://169.254.145.10:3000/plan/" + UsuarioSingleton.getInstance().getId(), "GET", null);
+                    con.execute("http://192.168.0.14:3000/plan/" + UsuarioSingleton.getInstance().getId(), "GET", null);
                 }
             }
             else {
