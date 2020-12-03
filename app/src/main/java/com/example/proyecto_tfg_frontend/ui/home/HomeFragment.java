@@ -10,6 +10,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.example.proyecto_tfg_frontend.Activity_progeso;
+import com.example.proyecto_tfg_frontend.Dietas;
 import com.example.proyecto_tfg_frontend.Ejercicios;
 import com.example.proyecto_tfg_frontend.R;
 import com.example.proyecto_tfg_frontend.Rutinas;
@@ -28,6 +29,15 @@ public class HomeFragment extends Fragment {
         contador = (CardView) root.findViewById(R.id.Contador_cal);
         dietas = (CardView) root.findViewById(R.id.Dietas);
         ejercicios = (CardView) root.findViewById(R.id.Ejericios);
+
+        dietas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Dietas.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
 
         rutinas.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -63,4 +63,7 @@ dependencies {
 
     //youtube
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
+
+    //subir imagenes
+    implementation 'net.gotev:uploadservice:2.1'
 }

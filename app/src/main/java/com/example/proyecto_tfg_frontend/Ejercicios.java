@@ -146,6 +146,12 @@ public class Ejercicios extends AppCompatActivity implements Interfaz{
     }
 
     @Override
+    protected void onDestroy() {
+        System.out.println("ME DESTRUYO");
+        super.onDestroy();
+    }
+
+    @Override
     public void Respuesta(JSONObject datos) {
         try {
             if(datos.getInt("codigo") == 200) {
@@ -154,7 +160,6 @@ public class Ejercicios extends AppCompatActivity implements Interfaz{
                     for (int i = 0; i < nombres.length(); i++) {
                         listDatosEjercicio.add(i, nombres.getString(i));
                     }
-
                     //Añadir todos los elementos consultados
                     adaptador = new AdaptadorDatosEjercicios(listDatosEjercicio);
                     adaptador.setOnClickListener(new View.OnClickListener() {

@@ -54,15 +54,8 @@ public class Ejercicio extends AppCompatActivity implements Interfaz{
         imagen_ej = (ImageView) findViewById(R.id.imagen_ejercicio);
 
         //YOUTUBE
-        video = findViewById(R.id.video);
-        getLifecycle().addObserver(video);
-        video.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
-            @Override
-            public void onReady(@NonNull YouTubePlayer youTubePlayer) {
-                String videoId = "S0Q4gqBUs7c";
-                youTubePlayer.loadVideo(videoId, 0);
-            }
-        });
+        video = (YouTubePlayerView) findViewById(R.id.video);
+
         //***********************
 
         String nombre = getIntent().getStringExtra("ejercicio");
@@ -96,6 +89,19 @@ public class Ejercicio extends AppCompatActivity implements Interfaz{
                     nombres_musc += " " + array.get(i);
                 }
                 musc.setText("Musculos:" + nombres_musc);
+                getLifecycle().addObserver(video);
+                video.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+                    @Override
+                    public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                        String videoId = null;
+                        try {
+                            videoId = datos.getString("id_youtube");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        youTubePlayer.loadVideo(videoId, 0);
+                    }
+                });
             }
             else {
                 System.out.println("CODIGO DE ERROR");

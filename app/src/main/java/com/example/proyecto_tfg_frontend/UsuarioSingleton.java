@@ -21,10 +21,21 @@ public class UsuarioSingleton {
     private Date fecha_nacimiento;
     private Bitmap imagen;
     private String dato;
+    private String url_img;
+
+
 
     private static final UsuarioSingleton ourInstance = new UsuarioSingleton();
 
     public UsuarioSingleton() {
+    }
+
+    public String getUrl_img() {
+        return url_img;
+    }
+
+    public void setUrl_img(String url_img) {
+        this.url_img = url_img;
     }
 
     public static UsuarioSingleton getInstance() {

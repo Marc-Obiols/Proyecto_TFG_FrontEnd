@@ -73,6 +73,7 @@ public class Log_in extends AppCompatActivity implements Interfaz {
                 UsuarioSingleton.getInstance().setMail(datos.getString("email"));
                 UsuarioSingleton.getInstance().setSexo(datos.getString("sexo"));
                 UsuarioSingleton.getInstance().setPeso_id(datos.getInt("peso_ideal"));
+                UsuarioSingleton.getInstance().setUrl_img(datos.getString("url_img"));
 
                 System.out.println();
 
@@ -86,12 +87,12 @@ public class Log_in extends AppCompatActivity implements Interfaz {
                     aux1[i] = aux3.getInt(i);
                     aux4[i] = sdf.parse(aux2.getString(i).substring(0,10));
                 }
-                JSONObject imagen = datos.getJSONObject("imagen");
-                byte [] imageInByteArray = Base64.decode(imagen.getString("data"), Base64.DEFAULT);
+                //JSONObject imagen = datos.getJSONObject("imagen");
+                /*byte [] imageInByteArray = Base64.decode(imagen.getString("data"), Base64.DEFAULT);
                 System.out.println("EN BYTES LA IMAGEN");
                 System.out.println(imagen.getJSONObject("data").getString("data"));
                 System.out.println("SIGUENTE PARAMETRO");
-                System.out.println(imagen.getString("contentType"));
+                System.out.println(imagen.getString("contentType"));*/
                 /*
                 for(int j=0;j<aux1.length;j++) {  //length is the property of the array
                     System.out.println(aux1[j]);
