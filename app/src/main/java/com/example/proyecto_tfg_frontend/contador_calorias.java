@@ -1,12 +1,16 @@
 package com.example.proyecto_tfg_frontend;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -22,6 +26,7 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,7 +34,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class contador_calorias extends AppCompatActivity implements Interfaz{
+public class contador_calorias extends AppCompatActivity {
+
+    private BottomNavigationView menu;
+    private FragmentTransaction transaction;
+    private Fragment busqueda, alimentacion_actual;
 
     private EditText buscador;
     private CircleImageView buscar;
@@ -41,13 +50,39 @@ public class contador_calorias extends AppCompatActivity implements Interfaz{
     private Dialog pantalla;
     private int llamada;
     private TextView kcalorias, proteinas, carbohidratos, fibra, grasas, kcalorias_o, proteinas_o, carbohidratos_o, fibra_o, grasas_o;
-    private ImageButton grafico, abrir_list;
+    private ImageButton grafico;
     private Boolean seleccionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contador_calorias);
+
+        busqueda = new busqueda_alimentacion();
+        alimentacion_actual = new alimentacion_actual();
+        transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.pantalla, busqueda).commit();
+
+        menu = (BottomNavigationView) findViewById(R.id.menu_alimentacion);
+        menu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                if (item.getItemId() == R.id.busqueda) {
+                    transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.pantalla, busqueda);
+                    transaction.commit();
+                }
+                else if (item.getItemId() == R.id.Alimentacion) {
+                    transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.pantalla, alimentacion_actual);
+                    transaction.commit();
+                }
+                return true;
+            }
+        });
+    }
+    /*
         seleccionado = false;
 
         alimentos_añadidos = new ArrayList<>();
@@ -62,7 +97,6 @@ public class contador_calorias extends AppCompatActivity implements Interfaz{
         buscador = (EditText) findViewById(R.id.buscador);
         buscar = (CircleImageView) findViewById(R.id.buscar);
         grafico = (ImageButton) findViewById(R.id.grafico_circular);
-        abrir_list = (ImageButton) findViewById(R.id.abrir_list);
 
         grafico.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -328,5 +362,5 @@ public class contador_calorias extends AppCompatActivity implements Interfaz{
             else res = res + "%20";
         }
         return res;
-    }
+    }*/
 }

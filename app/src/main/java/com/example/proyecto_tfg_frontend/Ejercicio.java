@@ -78,7 +78,7 @@ public class Ejercicio extends AppCompatActivity implements Interfaz{
     public void Respuesta(JSONObject datos) throws JSONException {
         try {
             if(datos.getInt("codigo") == 200) {
-                nom.setText("Nombre: " + datos.getString("nombre"));
+                nom.setText(datos.getString("nombre"));
                 Boolean aux = datos.getBoolean("estiramiento");
                 if (aux) est.setText("Tipo ejercicio: Estiramiento");
                 else est.setText("Tipo ejercicio: Aerobico");

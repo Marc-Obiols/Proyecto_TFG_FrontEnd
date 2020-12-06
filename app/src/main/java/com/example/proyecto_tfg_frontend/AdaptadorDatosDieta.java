@@ -64,7 +64,7 @@ public class AdaptadorDatosDieta extends RecyclerView.Adapter<AdaptadorDatosDiet
 
         public void asignarDatos(Pair<String, String> dato) {
             nombre.setText(dato.first);
-            img.setImageResource(R.drawable.dieta_1);
+            img.setImageResource(R.drawable.dieta_2);
         }
     }
 }

@@ -21,6 +21,7 @@ public class AdaptadorDatosAlimentosSeleccionados extends RecyclerView.Adapter<A
 
     private ArrayList <Alimento> list;
     private Context c;
+    private Interfaz encargado;
     private Dialog pantalla;
     private int llamada;
 
@@ -28,9 +29,10 @@ public class AdaptadorDatosAlimentosSeleccionados extends RecyclerView.Adapter<A
         this.llamada = llamada;
     }
 
-    public AdaptadorDatosAlimentosSeleccionados(ArrayList<Alimento> listDatos, Context contexto) {
+    public AdaptadorDatosAlimentosSeleccionados(ArrayList<Alimento> listDatos, Context contexto, Interfaz encargado) {
         this.list = listDatos;
         c = contexto;
+        this.encargado = encargado;
         pantalla = new Dialog(c);
     }
 
@@ -89,7 +91,7 @@ public class AdaptadorDatosAlimentosSeleccionados extends RecyclerView.Adapter<A
                                 e.printStackTrace();
                             }
                             llamada = 2;
-                            Connection con = new Connection((Interfaz) c);
+                            Connection con = new Connection(encargado);
                             con.execute("http://192.168.0.14:3000/alimentacion/removeAlimento", "POST", req.toString());
                             pantalla.dismiss();
                         }

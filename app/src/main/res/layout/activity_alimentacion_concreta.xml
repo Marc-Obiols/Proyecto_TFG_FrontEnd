@@ -8,7 +8,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    tools:context=".Alimentacion_concreta">
+    tools:context=".Alimentacion_concreta"
+    android:background="@drawable/gradient">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lista_alimentos"
@@ -22,280 +23,146 @@
         android:id="@+id/idGrid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/grafico_circular"
+        android:layout_above="@+id/l1"
+        android:layout_marginBottom="10dp"
         android:layout_alignParentLeft="true"
-        android:paddingBottom="15dp"
-        android:paddingTop="15dp"
         android:columnCount="5"
-        android:rowCount="2">
-
-        <androidx.cardview.widget.CardView
+        android:rowCount="1"
+        android:background="@drawable/gradient_elementos">
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground"
-            android:layout_gravity="center">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-                <TextView
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1">
+            <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="20dp"
                     android:text="Kcal"
-                    android:textColor="@color/black"
-                    android:gravity="center_horizontal"
-                    android:textSize="10dp"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textSize="12dp"
                     android:textStyle="bold"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground"
-            android:layout_gravity="center">
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/kcal"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="Kcal"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="10dp" />
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="49dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal"
-                    android:text="Proteinas"
-                    android:textColor="@color/black"
-                    android:textSize="10dp"
+                android:orientation="vertical"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:gravity="center"
+                    android:text="Proteínas (g)"
+                    android:textColor="@color/white"
+                    android:textSize="12dp"
                     android:textStyle="bold" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground"
-            android:layout_gravity="center">
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/proteinas"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="Proteinas"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="10dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
-                <TextView
+                android:orientation="vertical"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1">
+            <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Grasas"
-                    android:textColor="@color/black"
-                    android:gravity="center_horizontal"
-                    android:textSize="10dp"
+                    android:layout_height="20dp"
+                    android:text="Grasas (g)"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textSize="12dp"
                     android:textStyle="bold"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground"
-            android:layout_gravity="center">
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/grasas"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="Grasas"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="10dp" />
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
-                <TextView
+                android:orientation="vertical"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1">
+            <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Fibra"
-                    android:textColor="@color/black"
-                    android:gravity="center_horizontal"
-                    android:textSize="10dp"
+                    android:layout_height="20dp"
+                    android:text="Fibra (g)"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textSize="12dp"
                     android:textStyle="bold"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground"
-            android:layout_gravity="center">
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/fibra"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="Fibra"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="10dp" />
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
-                <TextView
+                android:orientation="vertical"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1">
+            <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Carbohidratos"
-                    android:textColor="@color/black"
-                    android:gravity="center_horizontal"
-                    android:textSize="10dp"
+                    android:layout_height="20dp"
+                    android:text="Carbohidratos (g)"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textSize="12dp"
                     android:textStyle="bold"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/kcal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Kcal"
-                    android:textColor="@color/black"
-                    android:gravity="center_horizontal"
-                    android:textSize="10dp"
-                    android:textStyle="bold"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/proteinas"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Proteinas"
-                    android:textColor="@color/black"
-                    android:gravity="center_horizontal"
-                    android:textSize="10dp"
-                    android:textStyle="bold"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/grasas"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Grasas"
-                    android:textColor="@color/black"
-                    android:gravity="center_horizontal"
-                    android:textSize="10dp"
-                    android:textStyle="bold"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/fibra"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Fibra"
-                    android:textColor="@color/black"
-                    android:gravity="center_horizontal"
-                    android:textSize="10dp"
-                    android:textStyle="bold"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/carbo_hidra"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Carbohidratos"
-                    android:textColor="@color/black"
-                    android:gravity="center_horizontal"
-                    android:textSize="10dp"
-                    android:textStyle="bold"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/carbo_hidra"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="Carbohidratos"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="10dp" />
+        </LinearLayout>
     </GridLayout>
-    <ImageButton
-        android:id="@+id/grafico_circular"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/l1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/ic_grafico"
-        android:layout_height="wrap_content"/>
+        android:layout_alignParentRight="true">
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/grafico_circular"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_grafico"
+            app:backgroundTint="@color/Rosa_fuxia"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 </RelativeLayout>

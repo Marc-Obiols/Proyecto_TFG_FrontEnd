@@ -45,9 +45,17 @@
                     android:textColor="@color/white"
                     android:text="Edad"/>
 
-    <EditText android:background="@null" android:layout_height="30dp" android:layout_width="match_parent" android:id="@+id/edad" android:textStyle="bold" android:textSize="20dp" android:gravity="center_horizontal" android:textColor="@color/white" android:inputType="number"/>
-
-</LinearLayout>
+                <EditText
+                    android:background="@null"
+                    android:layout_height="30dp"
+                    android:layout_width="match_parent"
+                    android:id="@+id/edad"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/white"
+                    android:inputType="number"/>
+            </LinearLayout>
 
 
     <LinearLayout android:background="@drawable/custom_gridlayout" android:layout_height="wrap_content" android:layout_width="wrap_content" android:orientation="vertical" android:layout_rowWeight="1" android:layout_columnWeight="1">

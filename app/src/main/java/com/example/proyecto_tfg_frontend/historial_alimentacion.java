@@ -29,6 +29,8 @@ public class historial_alimentacion extends Fragment implements Interfaz{
 
         recycler = (RecyclerView) view.findViewById(R.id.historial);
         recycler.setLayoutManager(new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL,false));
+        SeparatorDecoration decoration = new SeparatorDecoration(getActivity(), R.color.Transparente, 5f);
+        recycler.addItemDecoration(decoration);
 
         list = new ArrayList<>();
         Connection con = new Connection(this);

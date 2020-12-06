@@ -19,11 +19,9 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
 
 public class Medidas extends Fragment {
 
@@ -39,6 +37,8 @@ public class Medidas extends Fragment {
         grafico = (LineChart) view.findViewById(R.id.grafico);
         recycler = (RecyclerView) view.findViewById(R.id.historial);
         recycler.setLayoutManager(new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL,false));
+        SeparatorDecoration decoration = new SeparatorDecoration(getActivity(), R.color.Transparente, 5f);
+        recycler.addItemDecoration(decoration);
 
         Date[] aux = UsuarioSingleton.getInstance().getFechas();
         String[] fechas = new String[aux.length];
@@ -85,7 +85,7 @@ public class Medidas extends Fragment {
             }
         });
 
-        //xAxis.setLabelCount(3);
+        xAxis.setLabelCount(2);
         xAxis.setTextSize(8);
         grafico.setData(result);
         grafico.invalidate();
@@ -94,7 +94,6 @@ public class Medidas extends Fragment {
         grafico.setContentDescription("");
 
         llenar_recycler();
-
         return view;
     }
 
@@ -113,4 +112,5 @@ public class Medidas extends Fragment {
         adaptador = new AdaptadorDatosMedidas(list);
         recycler.setAdapter(adaptador);
     }
+
 }

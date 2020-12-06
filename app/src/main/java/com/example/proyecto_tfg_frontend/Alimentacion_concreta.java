@@ -16,6 +16,7 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,7 +31,7 @@ public class Alimentacion_concreta extends AppCompatActivity implements Interfaz
     private RecyclerView recycler;
     private TextView kcalorias, proteinas, carbohidratos, fibra, grasas;
     private Dialog pantalla;
-    private ImageButton grafico;
+    private FloatingActionButton grafico;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +40,11 @@ public class Alimentacion_concreta extends AppCompatActivity implements Interfaz
 
         list = new ArrayList<>();
         int pos = getIntent().getIntExtra("pos",0);
-        grafico = (ImageButton) findViewById(R.id.grafico_circular);
+        grafico = (FloatingActionButton) findViewById(R.id.grafico_circular);
         recycler = (RecyclerView) findViewById(R.id.lista_alimentos);
         recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
+        SeparatorDecoration decoration = new SeparatorDecoration(this, R.color.Transparente, 5f);
+        recycler.addItemDecoration(decoration);
 
         kcalorias = (TextView) findViewById(R.id.kcal);
         proteinas = (TextView) findViewById(R.id.proteinas);
