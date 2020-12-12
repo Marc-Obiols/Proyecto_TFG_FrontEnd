@@ -63,10 +63,19 @@ public class Medidas extends Fragment {
             data.add(new Entry(i, pesos[i]));
             xLabel.add(fechas[i]);
         }
+        for(int j=0;j<fechas.length;j++) {  //length is the property of the array
+            System.out.println(xLabel.get(j));
+        }
         LineDataSet lineadata1 = new LineDataSet(data, "Historial");
         lineadata1.setColor(Color.parseColor("#041DF4"));
+        lineadata1.setCircleColor(Color.parseColor("#041DF4"));
+        lineadata1.setCircleColorHole(Color.parseColor("#041DF4"));
+
         LineDataSet lineadata2 = new LineDataSet(pes_id, "Peso deseado");
         lineadata2.setColor(Color.parseColor("#FF0000"));
+        lineadata2.setCircleColor(Color.parseColor("#FF0000"));
+        lineadata2.setCircleColorHole(Color.parseColor("#FF0000"));
+
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
         dataSets.add(lineadata1);
         dataSets.add(lineadata2);
@@ -74,6 +83,7 @@ public class Medidas extends Fragment {
 
         YAxis yaxisleft = grafico.getAxisLeft();
         YAxis yaxisright = grafico.getAxisRight();
+        yaxisright.setEnabled(false);
 
         XAxis xAxis = grafico.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -81,10 +91,12 @@ public class Medidas extends Fragment {
         xAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
+                System.out.println(value);
+                if (value < 0) return "";
+                if (value >= xLabel.size()) return "";
                 return xLabel.get((int)value);
             }
         });
-
         xAxis.setLabelCount(2);
         xAxis.setTextSize(8);
         grafico.setData(result);
@@ -92,7 +104,6 @@ public class Medidas extends Fragment {
         grafico.setDrawBorders(true);
         grafico.setBorderColor(Color.parseColor("#03A9F4"));
         grafico.setContentDescription("");
-
         llenar_recycler();
         return view;
     }
@@ -106,7 +117,7 @@ public class Medidas extends Fragment {
         for (int i = pes_aux.length-1; i >= 0; i--) {
             String f = sdfr.format(fechas_aux[i]);
             String p = Integer.toString(pes_aux[i]);
-            list.add(j, f + " " + p);
+            list.add(j, f + " " + p + " Kg");
             j++;
         }
         adaptador = new AdaptadorDatosMedidas(list);

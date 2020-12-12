@@ -138,6 +138,8 @@ public class Ejercicios extends AppCompatActivity implements Interfaz{
 
         recycler = (RecyclerView) findViewById(R.id.lista_ejercicios);
         recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
+        SeparatorDecoration decoration = new SeparatorDecoration(this, R.color.Transparente, 5f);
+        recycler.addItemDecoration(decoration);
 
         listDatosEjercicio = new ArrayList<String>();
         llamada = 1;

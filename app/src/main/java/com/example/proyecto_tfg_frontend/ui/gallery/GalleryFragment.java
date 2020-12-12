@@ -13,9 +13,13 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.proyecto_tfg_frontend.Connection;
 import com.example.proyecto_tfg_frontend.Interfaz;
+import com.example.proyecto_tfg_frontend.Log_in;
 import com.example.proyecto_tfg_frontend.R;
 import com.example.proyecto_tfg_frontend.UsuarioSingleton;
+import com.example.proyecto_tfg_frontend.registro;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -28,6 +32,7 @@ public class GalleryFragment extends Fragment implements Interfaz {
     private EditText username;
     private CircleImageView imagen_perfil;
     private Button mod, elim, logout;
+    private static final String url = "http://192.168.0.14:3000/users/delete/";
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -47,6 +52,13 @@ public class GalleryFragment extends Fragment implements Interfaz {
         Picasso.get().load("http://192.168.0.14:3000/users/"+ UsuarioSingleton.getInstance().getId()+"/image").into(imagen_perfil);
         username.setText(UsuarioSingleton.getInstance().getUsername());
         email.setText(UsuarioSingleton.getInstance().getMail());
+        elim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Connection con = new Connection(GalleryFragment.this);
+                con.execute(url + UsuarioSingleton.getInstance().getId(), "POST", null);
+            }
+        });
         return root;
     }
 
@@ -68,6 +80,12 @@ public class GalleryFragment extends Fragment implements Interfaz {
 
     @Override
     public void Respuesta(JSONObject datos) throws JSONException {
+        if (datos.getInt("codigo") == 200) {
+            Intent i = new Intent(getActivity(), Log_in.class);
+            startActivity(i);
+        }
+        else {
 
+        }
     }
 }

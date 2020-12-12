@@ -38,6 +38,8 @@ public class Alimentacion_concreta extends AppCompatActivity implements Interfaz
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alimentacion_concreta);
 
+        pantalla = new Dialog(this);
+
         list = new ArrayList<>();
         int pos = getIntent().getIntExtra("pos",0);
         grafico = (FloatingActionButton) findViewById(R.id.grafico_circular);
@@ -64,7 +66,6 @@ public class Alimentacion_concreta extends AppCompatActivity implements Interfaz
         grafico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println(Integer.parseInt(proteinas.getText().toString()));
                 PieChart graf;
                 pantalla.setContentView(R.layout.popup_grafico_circular);
                 graf = (PieChart) pantalla.findViewById(R.id.piechart);
