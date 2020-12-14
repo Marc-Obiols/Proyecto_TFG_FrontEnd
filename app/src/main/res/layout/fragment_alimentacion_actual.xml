@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".alimentacion_actual"
@@ -19,468 +18,310 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:paddingBottom="15dp"
         android:columnCount="6"
-        android:rowCount="3">
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground">
-            <LinearLayout
-                android:layout_width="match_parent"
+        android:rowCount="3"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/gradient_elementos">
+        <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:orientation="horizontal">
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+            android:background="@drawable/custom_gridlayout">
 
-                <ImageButton
+            <ImageButton
                     android:id="@+id/grafico_circular"
-                    android:layout_width="30dp"
+                    android:layout_width="wrap_content"
                     android:src="@drawable/ic_grafico"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground"
-            android:layout_gravity="center">
-            <LinearLayout
-                android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/Naranja"/>
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-                <TextView
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+            android:background="@drawable/custom_gridlayout">
+            <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Kcal"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:gravity="center_horizontal"
                     android:textSize="10dp"
                     android:textStyle="bold"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground"
-            android:layout_gravity="center">
-            <LinearLayout
-                android:layout_width="match_parent"
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="49dp"
-                    android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+            android:background="@drawable/custom_gridlayout">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:text="Proteinas"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="10dp"
                     android:textStyle="bold" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground"
-            android:layout_gravity="center">
-            <LinearLayout
-                android:layout_width="match_parent"
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+            android:background="@drawable/custom_gridlayout">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Grasas"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:gravity="center_horizontal"
                     android:textSize="10dp"
                     android:textStyle="bold"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground"
-            android:layout_gravity="center">
-            <LinearLayout
-                android:layout_width="match_parent"
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+            android:background="@drawable/custom_gridlayout">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Fibra"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:gravity="center_horizontal"
                     android:textSize="10dp"
                     android:textStyle="bold"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground"
-            android:layout_gravity="center">
-            <LinearLayout
-                android:layout_width="match_parent"
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:background="@drawable/custom_gridlayout">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Carbohidratos"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:gravity="center_horizontal"
                     android:textSize="10dp"
                     android:textStyle="bold"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground">
-            <LinearLayout
-                android:layout_width="match_parent"
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="vertical"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="@drawable/custom_gridlayout">
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Objetivo"
-                    android:textColor="@color/black"
-                    android:gravity="center_horizontal"
+                    android:layout_height="30dp"
+                    android:text="Objetivo:"
+                    android:textColor="@color/white"
+                    android:gravity="center"
                     android:textSize="10dp"
                     android:textStyle="bold"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground">
-            <LinearLayout
-                android:layout_width="match_parent"
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="vertical"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="@drawable/custom_gridlayout">
                 <TextView
                     android:id="@+id/kcal_ob"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:gravity="center_horizontal"
-                    android:textSize="10dp"
-                    android:textStyle="bold"/>
+                    android:textSize="10dp" />
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground">
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_gridlayout">
                 <TextView
                     android:id="@+id/proteinas_o"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:gravity="center_horizontal"
-                    android:textSize="10dp"
-                    android:textStyle="bold"/>
+                    android:textSize="10dp" />
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground">
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_gridlayout">
                 <TextView
                     android:id="@+id/grasas_o"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:gravity="center_horizontal"
-                    android:textSize="10dp"
-                    android:textStyle="bold"/>
+                    android:textSize="10dp"/>
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground">
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_gridlayout">
                 <TextView
                     android:id="@+id/fibra_o"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:gravity="center_horizontal"
-                    android:textSize="10dp"
-                    android:textStyle="bold"/>
+                    android:textSize="10dp"/>
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground">
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_gridlayout">
                 <TextView
                     android:id="@+id/carbo_hidra_o"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:gravity="center_horizontal"
-                    android:textSize="10dp"
-                    android:textStyle="bold"/>
+                    android:textSize="10dp"/>
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground">
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_gridlayout">
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Restantes	"
-                    android:textColor="@color/black"
-                    android:gravity="center_horizontal"
+                    android:layout_height="30dp"
+                    android:text="Conseguidas:"
+                    android:textColor="@color/white"
+                    android:gravity="center"
                     android:textSize="10dp"
                     android:textStyle="bold"/>
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground">
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_gridlayout">
                 <TextView
                     android:id="@+id/kcal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:gravity="center_horizontal"
-                    android:textSize="10dp"
-                    android:textStyle="bold"/>
+                    android:textSize="10dp"/>
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground">
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_gridlayout">
                 <TextView
                     android:id="@+id/proteinas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:gravity="center_horizontal"
-                    android:textSize="10dp"
-                    android:textStyle="bold"/>
+                    android:textSize="10dp"/>
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground">
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_gridlayout">
                 <TextView
                     android:id="@+id/grasas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:gravity="center_horizontal"
-                    android:textSize="10dp"
-                    android:textStyle="bold"/>
+                    android:textSize="10dp"/>
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground">
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_gridlayout">
                 <TextView
                     android:id="@+id/fibra"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:gravity="center_horizontal"
-                    android:textSize="10dp"
-                    android:textStyle="bold"/>
+                    android:textSize="10dp"/>
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
-            android:layout_columnWeight="6"
-            android:foreground="?selectableItemBackground">
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_gridlayout">
                 <TextView
                     android:id="@+id/carbo_hidra"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:gravity="center_horizontal"
-                    android:textSize="10dp"
-                    android:textStyle="bold"/>
+                    android:textSize="10dp"/>
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
     </GridLayout>
 
 

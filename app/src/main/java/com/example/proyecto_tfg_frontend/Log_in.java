@@ -117,4 +117,8 @@ public class Log_in extends AppCompatActivity implements Interfaz {
             e.printStackTrace();
         }
     }
+    @Override
+    public void onBackPressed() {
+
+    }
 }

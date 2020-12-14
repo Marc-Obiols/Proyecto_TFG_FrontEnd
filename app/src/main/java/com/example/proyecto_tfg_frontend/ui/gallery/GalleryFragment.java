@@ -3,7 +3,6 @@ package com.example.proyecto_tfg_frontend.ui.gallery;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +18,6 @@ import com.example.proyecto_tfg_frontend.Interfaz;
 import com.example.proyecto_tfg_frontend.Log_in;
 import com.example.proyecto_tfg_frontend.R;
 import com.example.proyecto_tfg_frontend.UsuarioSingleton;
-import com.example.proyecto_tfg_frontend.registro;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -57,6 +55,13 @@ public class GalleryFragment extends Fragment implements Interfaz {
             public void onClick(View v) {
                 Connection con = new Connection(GalleryFragment.this);
                 con.execute(url + UsuarioSingleton.getInstance().getId(), "POST", null);
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), Log_in.class);
+                startActivity(i);
             }
         });
         return root;

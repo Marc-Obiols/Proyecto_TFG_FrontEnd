@@ -3,7 +3,6 @@ package com.example.proyecto_tfg_frontend;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,16 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Rutina extends AppCompatActivity implements Interfaz {
 
@@ -202,6 +196,7 @@ public class Rutina extends AppCompatActivity implements Interfaz {
                             @Override
                             public void onClick(View v) {
                                 nombre_ejercicio_auxiliar = listDatosEjercicioSeleccionar.get(recycler.getChildAdapterPosition(v));
+                                Toast.makeText(Rutina.this, nombre_ejercicio_auxiliar, Toast.LENGTH_LONG).show();
                             }
                         });
                         recyclerEjercicios.setAdapter(adaptadorEjercicios);

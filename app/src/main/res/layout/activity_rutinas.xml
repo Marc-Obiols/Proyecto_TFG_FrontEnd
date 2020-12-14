@@ -43,5 +43,6 @@
         app:itemIconTint="#ffffff"
         app:itemTextColor="#ffffff"
         app:labelVisibilityMode="labeled"
+        android:elevation="10dp"
         app:menu="@menu/menu_rutinas" />
 </RelativeLayout>

@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Ejecucion_rutina">
+    tools:context=".Ejecucion_rutina"
+    android:background="@drawable/gradient">
 
 
     <LinearLayout
@@ -51,13 +52,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
+            android:textColor="@color/white"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@android:drawable/ic_media_play"
-            tools:ignore="VectorDrawableCompat" />
+            tools:ignore="VectorDrawableCompat"
+            app:backgroundTint="@color/Rosa_fuxia"/>
+
     </LinearLayout>
 
 </RelativeLayout>

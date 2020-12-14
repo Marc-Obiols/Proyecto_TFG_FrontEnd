@@ -13,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_alignParentLeft="true"
+        android:textColor="@color/black"
         android:layout_alignParentTop="true"
         android:text="Introduce el peso de hoy:"
         android:textSize="15dp"
@@ -31,6 +32,7 @@
         android:layout_height="30dp"
         android:textSize="15dp"
         android:text="Introduce la altura:"
+        android:textColor="@color/black"
         android:layout_below="@+id/ult_reg_pes"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"/>
@@ -40,6 +42,7 @@
         android:layout_height="30dp"
         android:textSize="15dp"
         android:text="Introduce el peso meta:"
+        android:textColor="@color/black"
         android:layout_marginLeft="20dp"
         android:layout_below="@+id/ult_reg"
         android:layout_marginTop="10dp"/>
@@ -92,15 +95,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Confirmar"
-        android:textSize="10dp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
         android:layout_marginRight="10dp"/>
 
     <Button
         android:id="@+id/cancelar"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cancelar"
-        android:textSize="10dp" />
+        android:textAllCaps="false"
+        android:text="Cancelar" />
     </LinearLayout>
 
 </RelativeLayout>

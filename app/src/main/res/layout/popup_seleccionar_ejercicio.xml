@@ -29,6 +29,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/add"
         android:text="Añadir"
+        android:textColor="@color/white"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"/>
 

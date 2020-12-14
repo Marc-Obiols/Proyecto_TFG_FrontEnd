@@ -226,4 +226,9 @@ public class Inicio extends AppCompatActivity implements Interfaz{
         return imagenString;
 
     }
+
+    @Override
+    public void onBackPressed() {
+
+    }
 }

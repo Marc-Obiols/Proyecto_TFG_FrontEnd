@@ -7,7 +7,8 @@
     android:paddingTop="50dp"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    tools:context=".ui.gallery.GalleryFragment">
+    tools:context=".ui.gallery.GalleryFragment"
+    android:background="@drawable/gradient">
 
     <LinearLayout
 
@@ -28,10 +29,12 @@
             <EditText
                 android:id="@+id/username"
                 android:layout_width="match_parent"
+                android:textColor="@color/white"
                 android:layout_height="50dp"/>
             <EditText
                 android:id="@+id/mail"
                 android:layout_width="match_parent"
+                android:textColor="@color/white"
                 android:layout_height="50dp"/>
         </LinearLayout>
     </LinearLayout>
@@ -44,6 +47,8 @@
         android:layout_marginLeft="28dp"
         android:layout_marginBottom="136dp"
         android:text="Modificar"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/logout" />
 
@@ -55,6 +60,8 @@
         android:layout_marginLeft="32dp"
         android:layout_marginBottom="136dp"
         android:text="Eliminar"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/mod" />
 
@@ -64,8 +71,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
+        android:textAllCaps="false"
         android:layout_marginBottom="136dp"
         android:text="Logout"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

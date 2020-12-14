@@ -18,6 +18,7 @@ import org.json.JSONObject;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class datos_user extends AppCompatActivity implements Interfaz{
@@ -59,7 +60,15 @@ public class datos_user extends AppCompatActivity implements Interfaz{
         peso_meta.setText(String.valueOf(UsuarioSingleton.getInstance().getPeso_des()));
         altura.setText(String.valueOf(UsuarioSingleton.getInstance().getAltura()));
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        edad.setText(sdf.format(UsuarioSingleton.getInstance().getFecha_nacimiento()));
+
+        Calendar c = Calendar.getInstance();
+        int año_actual = c.get(Calendar.YEAR) - 1900;
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(UsuarioSingleton.getInstance().getFecha_nacimiento());
+        int año_nac = calendar.get(Calendar.YEAR) - 1900;
+        System.out.println(año_actual + " : " + año_nac);
+
+        edad.setText(Integer.toString(año_actual-año_nac));
         IMC.setText(String.valueOf(UsuarioSingleton.getInstance().getIMC()));
         ArrayList<String> valores = calculo_pesos(UsuarioSingleton.getInstance().getSexo(), UsuarioSingleton.getInstance().getAltura());
         peso_ideal.setText(String.valueOf(UsuarioSingleton.getInstance().getPeso_id()));
