@@ -22,7 +22,7 @@ public class UsuarioSingleton {
     private Bitmap imagen;
     private String dato;
     private String url_img;
-
+    private List<String> dietas;
 
 
     private static final UsuarioSingleton ourInstance = new UsuarioSingleton();
@@ -151,5 +151,13 @@ public class UsuarioSingleton {
 
     public void setFecha_nacimiento(Date fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
+    }
+
+    public List<String> getDietas() {
+        return dietas;
+    }
+
+    public void setDietas(List<String> dietas) {
+        this.dietas = dietas;
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Ejercicios"
+    tools:context=".Actividades.Ejercicios"
     android:background="@drawable/gradient">
 
     <androidx.recyclerview.widget.RecyclerView

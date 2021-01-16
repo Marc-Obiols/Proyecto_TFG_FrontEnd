@@ -45,43 +45,52 @@
             android:layout_height="wrap_content"
             android:inputType="number" />
     </LinearLayout>
-
-    <CheckBox
-        android:id="@+id/Publica"
+    <TextView
+        android:id="@+id/aux"
         android:layout_width="wrap_content"
+        android:textColor="@color/black"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/confirmar"
         android:layout_below="@+id/l2"
-        android:layout_alignParentLeft="true"
-        android:text="Pública" />
-
+        android:text="Dificultad:"
+        android:layout_marginTop="5dp"/>
+    <Spinner
+        android:id="@+id/dificultad"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dropdown"
+        android:layout_below="@+id/l2"
+        android:layout_toRightOf="@+id/aux"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/Publica"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/l2">
-
-        <TextView
-            android:paddingLeft="5dp"
-            android:layout_width="wrap_content"
-            android:textColor="@color/black"
-            android:layout_height="match_parent"
-            android:text="Dificultad:" />
-
-        <Spinner
-            android:id="@+id/dificultad"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/confirmar"
+        android:layout_below="@+id/dificultad"
+        android:orientation="vertical">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+            android:layout_height="wrap_content">
 
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+        <CheckBox
+            android:id="@+id/Publica"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pública" />
+        </LinearLayout>
+    </LinearLayout>
     <Button
         android:id="@+id/confirmar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="42dp"
-        android:textColor="@color/white"
+        android:backgroundTint="@color/Naranja"
+        android:textColor="@color/black"
         android:layout_alignParentBottom="true"
         android:text="Crear"
         android:textAllCaps="false" />
@@ -93,8 +102,9 @@
         android:layout_alignParentBottom="true"
         android:layout_marginRight="40dp"
         android:layout_alignParentRight="true"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:text="Cancelar"
         android:textAllCaps="false"
+        android:backgroundTint="@color/Naranja"
         android:layout_marginTop="30dp"/>
 </RelativeLayout>

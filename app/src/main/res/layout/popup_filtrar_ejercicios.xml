@@ -136,7 +136,8 @@
         android:layout_below="@id/dificultad_y_tipo"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="40dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/Naranja"
         android:text="Filtrar"
         android:textAllCaps="false" />
 
@@ -146,7 +147,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/dificultad_y_tipo"
         android:layout_marginRight="40dp"
-        android:textColor="@color/white"
+        android:backgroundTint="@color/Naranja"
+        android:textColor="@color/black"
         android:layout_alignParentRight="true"
         android:text="Cancelar"
         android:textAllCaps="false"/>

@@ -7,7 +7,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    tools:context=".historial_alimentacion"
+    tools:context=".Fragments.historial_alimentacion"
     android:background="@drawable/gradient">
 
     <androidx.recyclerview.widget.RecyclerView

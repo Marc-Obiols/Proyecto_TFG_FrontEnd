@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RelativeLayout
-    tools:context=".datos_user"
+    tools:context=".Actividades.datos_user"
     android:background="@drawable/gradient"
     android:paddingRight="10dp"
     android:paddingLeft="10dp"

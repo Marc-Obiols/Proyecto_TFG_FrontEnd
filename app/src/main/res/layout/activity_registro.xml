@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
     android:padding="10dp"
-    tools:context=".registro">
+    tools:context=".Actividades.registro">
 
     <ScrollView
         android:id="@+id/scrollView2"

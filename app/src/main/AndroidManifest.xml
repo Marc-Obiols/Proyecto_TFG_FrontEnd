@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto_TFG_FrontEnd"
         android:usesCleartextTraffic="true">
-        <activity android:name=".splash_screen"
+        <activity android:name=".Actividades.splash_screen"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,59 +23,59 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Dieta"
+            android:name=".Actividades.Dieta"
             android:label="Dieta" />
         <activity
-            android:name=".Dietas"
+            android:name=".Actividades.Dietas"
             android:label="Dietas"
-            android:parentActivityName=".Inicio" />
+            android:parentActivityName=".Actividades.Inicio" />
         <activity
-            android:name=".datos_user"
+            android:name=".Actividades.datos_user"
             android:label="Información"
-            android:parentActivityName=".Inicio" />
+            android:parentActivityName=".Actividades.Inicio" />
         <activity
-            android:name=".Alimentacion_concreta"
+            android:name=".Actividades.Alimentacion_concreta"
             android:label="Alimentación"
-            android:parentActivityName=".contador_calorias" />
+            android:parentActivityName=".Actividades.contador_calorias" />
         <activity
-            android:name=".contador_calorias"
+            android:name=".Actividades.contador_calorias"
             android:label="Alimentación"
-            android:parentActivityName=".Inicio" />
+            android:parentActivityName=".Actividades.Inicio" />
         <activity
-            android:name=".Inicio"
+            android:name=".Actividades.Inicio"
             android:label="@string/title_activity_inicio"
             android:theme="@style/Theme.Proyecto_TFG_FrontEnd.NoActionBar" />
         <activity
-            android:name=".Ejecucion_rutina"
+            android:name=".Actividades.Ejecucion_rutina"
             android:label="Ejecución Rutina" />
         <activity
-            android:name=".Rutina"
+            android:name=".Actividades.Rutina"
             android:label="Rutina"
-            android:parentActivityName=".Rutinas" />
+            android:parentActivityName=".Actividades.Rutinas" />
         <activity
-            android:name=".Rutinas"
+            android:name=".Actividades.Rutinas"
             android:label="Rutinas"
-            android:parentActivityName=".Inicio" />
+            android:parentActivityName=".Actividades.Inicio" />
         <activity
-            android:name=".Ejercicio"
+            android:name=".Actividades.Ejercicio"
             android:label="Ejercicio" />
         <activity
-            android:name=".Ejercicios"
+            android:name=".Actividades.Ejercicios"
             android:label="Ejercicios"
-            android:parentActivityName=".Inicio" />
+            android:parentActivityName=".Actividades.Inicio" />
         <activity
-            android:name=".Activity_progeso"
+            android:name=".Actividades.Activity_progeso"
             android:label="Progreso"
-            android:parentActivityName=".Inicio" />
+            android:parentActivityName=".Actividades.Inicio" />
         <activity
-            android:name=".MenuPrincipal"
+            android:name=".Actividades.MenuPrincipal"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".registro"
-            android:parentActivityName=".Log_in"
+            android:name=".Actividades.registro"
+            android:parentActivityName=".Actividades.Log_in"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".Log_in"
+            android:name=".Actividades.Log_in"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
 
     </application>

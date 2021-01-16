@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".busqueda_alimentacion"
+    tools:context=".Fragments.busqueda_alimentacion"
     android:background="@drawable/gradient">
 
     <androidx.cardview.widget.CardView
